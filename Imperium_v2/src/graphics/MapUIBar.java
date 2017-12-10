@@ -30,6 +30,12 @@ public class MapUIBar extends JPanel{
 		
 		}
 	}
+	
+	public int getCycle() {
+		return cycle;
+	}
+	
+	}
 
 	public void paintComponent(Graphics g) {
 		Graphics g2d = (Graphics2D) g;
