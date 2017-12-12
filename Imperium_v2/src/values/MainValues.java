@@ -3,7 +3,7 @@ package values;
 import java.util.List;
 
 public class MainValues {
-	public static int resolution = 80;
+	public static int resolution = 75;
 	public static int width = 16*resolution; //height of Frame
 	public static int height = 9*resolution; //width of Frame
 	

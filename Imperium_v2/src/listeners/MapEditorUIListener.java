@@ -6,6 +6,8 @@ import java.awt.event.MouseListener;
 import values.MainValues;
 
 public class MapEditorUIListener implements MouseListener{
+	int res = MainValues.resolution;
+	boolean savingMap = false;
 
 	@Override
 	public void mouseClicked(MouseEvent arg0) {
@@ -35,18 +37,20 @@ public class MapEditorUIListener implements MouseListener{
 	public void mouseReleased(MouseEvent e) {
 		int mX = e.getX();
 		int mY = e.getY();
-		if(mY >= MainValues.resolution/5 && mY <= MainValues.resolution/5 + MainValues.resolution/2) {
-			if(mX >= MainValues.resolution && mX <= 3 * MainValues.resolution/2) {
-				//auto
-			} else if (mX >= 2 * MainValues.resolution && mX <= 10 * MainValues.resolution + MainValues.resolution/2){
-				int pressedX = (int) Math.ceil(((mX * 2)/MainValues.resolution) - 4);
-				if((pressedX/2.0) % 1 == 0) {
-					pressedX = (int) Math.floor(pressedX/2.0);
+		if(mY >= res/5 && mY <= res/5 + res/2) {
+			if (savingMap == false) {
+				if(mX >= res && mX <= 3 * res/2) {
+					main.Window.mapEditorUI.lftBtnClick();
+				} else if (mX >= res && mX <= 6 * res){
+					int pressedX = (int) Math.ceil(((mX * 2)/res) - 3);
 					int cycle = main.Window.mapEditorUI.getCycle();
-					int newTileType = 9 * cycle + pressedX;
-					listeners.MapEditorListener.setTileType(newTileType);
-				}			
-				
+					int newTileType = cycle + pressedX;
+					listeners.MapEditorListener.setTileType(newTileType);		
+				} else if (mX >= 6 * res && mX <= 6 * res + res/2) {
+					main.Window.mapEditorUI.rghtBtnClick();
+				} else if (mX >= 7* res && mX <= 8 * res) {
+					main.Window.mapEditorUI.setSavingStatus(true);
+				}
 			}
 		}
 		

@@ -16,16 +16,23 @@ public class MapUIBar extends JPanel{
 	File LeftButton = new File("res/gridlines.png");
 	File RightButton = new File("res/gridlines.png");
 	File BGImage = new File("res/buttonHover.png");
+	File SaveButton = new File("res/buttonDefaultLoad.png");
+	File ExitButton = new File("res/buttonDefaultExit.png");
+	File WriteNameBG = new File("res/ice.png");
 	int cycle = 0;
+	boolean savingMap = false;
 	
 	static TileImageLoader battleTiles = new TileImageLoader();
 	Image[] imgArr = battleTiles.LoadImages();
 	
-	Image bgImage, lftBtn, rghtBtn; {
+	Image bgImage, lftBtn, rghtBtn, saveBtn, writeBG, exitBtn; {
 		try { 
 			bgImage = ImageIO.read(BGImage);
 			lftBtn = ImageIO.read(LeftButton);
 			rghtBtn = ImageIO.read(RightButton);
+			saveBtn = ImageIO.read(SaveButton);
+			writeBG = ImageIO.read(WriteNameBG);
+			exitBtn = ImageIO.read(ExitButton);
 		} catch(Exception e) {
 		
 		}
@@ -42,21 +49,32 @@ public class MapUIBar extends JPanel{
 	}
 	
 	public void rghtBtnClick() {
-		if ((Math.ceil(imgArr.length -1)/9.0) < cycle) {
+		if ((imgArr.length -1) >= cycle + 9) {
 			cycle += 1;
 		}
 	}
+	
+	public void setSavingStatus(boolean status) {
+		savingMap = status;		
+	}
 
 	public void paintComponent(Graphics g) {
+		int res = MainValues.resolution;
 		Graphics g2d = (Graphics2D) g;
 		g2d.drawImage(bgImage, 0, 0, MainValues.width, MainValues.width/4, null);
-		g2d.drawImage(lftBtn, MainValues.resolution, MainValues.resolution/5, MainValues.resolution/2, MainValues.resolution/2, null);
-		g2d.drawImage(rghtBtn, 11 * MainValues.resolution, MainValues.resolution/5, MainValues.resolution/2, MainValues.resolution/2, null);
-		for (int i = 0 ; i <= 8; i++) {
-			g2d.drawImage(imgArr[i+cycle], (i*2+4) * MainValues.resolution/2, MainValues.resolution/5, MainValues.resolution/2, MainValues.resolution/2, null);
-			if (cycle + i >= 15) {
-				cycle = 0;
+		if (savingMap == false) {
+			g2d.drawImage(lftBtn, res, res/5, res/2, res/2, null);
+			g2d.drawImage(rghtBtn, 6 * res, res/5, res/2, res/2, null);
+			g2d.drawImage(saveBtn, 7 * res, res/5, res, res/2, null);
+			g2d.drawImage(saveBtn, (int) Math.ceil(13.5 * res), res/5, res, res/2, null);
+			g2d.drawImage(saveBtn, (int) Math.ceil(15 * res), res/5, res, res/2, null);
+			for (int i = 0 ; i <= 8; i++) {		
+				if (cycle + i <= imgArr.length -1) {
+					g2d.drawImage(imgArr[i+cycle], (i+3) * res/2, res/5, res/2, res/2, null);
+				}
 			}
+		} else {
+			g2d.drawImage(writeBG, res, res/5, 6*res, res/2, null);
 		}
 	}
 }
