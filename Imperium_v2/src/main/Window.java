@@ -20,7 +20,7 @@ public class Window{
 	public static JPanel menuPanel = new MenuGfx();
 	public static JPanel optionsPanel = new OptionsGfx();
 	public static JPanel battleMapPanel = new BattleMap();
-	public static JPanel mapEditorUI = new MapUIBar();
+	public static MapUIBar mapEditorUI = new MapUIBar(); // not simply declared as a JPanel as it has its won method
 	
 	public static void window() {
 		startPanel.setSize(MainValues.width + 6, MainValues.height + 25);

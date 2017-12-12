@@ -62,18 +62,24 @@ public class MenuListener implements MouseListener {
 					GameListener myListener = new GameListener();
 					Window.frame.addMouseListener(myListener);
 					Window.frame.addMouseMotionListener(myListener);
+					
 				} else if(mY > (9.0*5.0/12-1.0/2)*MainValues.resolution && mY < (9.0*5.0/12+1.0/2)*MainValues.resolution){ //Map editor
 					MainValues.mainMenu = false;
 					Window.frame.removeMouseListener(this);
+					Window.frame.addMouseWheelListener(new ScrollListener());
+					
 					CSVReader fileReader = new CSVReader();
 					MainValues.battleMapArray = fileReader.ReadCSVFile("Maps" + File.separator + "ANewMap.txt");
-					Window.frame.addMouseWheelListener(new ScrollListener());
-					Window.Layer.add(Window.battleMapPanel);
-					Window.mapEditorUI.setLocation(0, 8 * MainValues.resolution);
-					Window.Layer.add(Window.mapEditorUI, JLayeredPane.MODAL_LAYER);
+					Window.Layer.add(Window.battleMapPanel);					
 					MapEditorListener myListener = new MapEditorListener();
 					Window.battleMapPanel.addMouseListener(myListener);
 					Window.battleMapPanel.addMouseMotionListener(myListener);
+					
+					Window.mapEditorUI.setLocation(0, 8 * MainValues.resolution);
+					Window.Layer.add(Window.mapEditorUI, JLayeredPane.MODAL_LAYER);
+					MapEditorUIListener uiListerner = new MapEditorUIListener();
+					Window.mapEditorUI.addMouseListener(uiListerner);
+
 					Window.Layer.remove(Window.menuPanel);
 				} else if(mY > (9.0*7.0/12-1.0/2)*MainValues.resolution && mY < (9.0*7.0/12+1.0/2)*MainValues.resolution) { //clicked Options 
 					MainValues.mainMenu = false;
