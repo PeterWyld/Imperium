@@ -21,6 +21,8 @@ public class MapUIBar extends JPanel{
 	File WriteNameBG = new File("res/ice.png");
 	int cycle = 0;
 	boolean savingMap = false;
+	int res = MainValues.resolution;
+	String saveText = "Sample";
 	
 	static TileImageLoader battleTiles = new TileImageLoader();
 	Image[] imgArr = battleTiles.LoadImages();
@@ -59,7 +61,6 @@ public class MapUIBar extends JPanel{
 	}
 
 	public void paintComponent(Graphics g) {
-		int res = MainValues.resolution;
 		Graphics g2d = (Graphics2D) g;
 		g2d.drawImage(bgImage, 0, 0, MainValues.width, MainValues.width/4, null);
 		if (savingMap == false) {
@@ -75,6 +76,7 @@ public class MapUIBar extends JPanel{
 			}
 		} else {
 			g2d.drawImage(writeBG, res, res/5, 6*res, res/2, null);
+			g2d.drawString(saveText, res, (int) Math.ceil(3/2.0 *res));
 		}
 	}
 }
