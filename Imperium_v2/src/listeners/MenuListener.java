@@ -44,10 +44,10 @@ public class MenuListener implements MouseListener {
 		if (MainValues.startMenu == true) {
 			if(mX > (16/2-2/2)*MainValues.resolution && mX < (16/2+2/2)*MainValues.resolution &&
 				mY > (9.0/2-1.0/2)*MainValues.resolution && mY < (9.0/2+1.0/2)*MainValues.resolution){ //check if they clicked the button
-			MainValues.startMenu = false;
-			MainValues.mainMenu = true;
-			Window.Layer.remove(Window.startPanel);
-			Window.Layer.add(Window.menuPanel);
+				MainValues.startMenu = false;
+				MainValues.mainMenu = true;
+				Window.Layer.remove(Window.startPanel);
+				Window.Layer.add(Window.menuPanel);
 			}
 		} else if (MainValues.mainMenu == true) {
 			if (mX > (16/2-2.5/2)*MainValues.resolution && mX < (16/2+2.5/2)*MainValues.resolution) { //check if in right row
@@ -86,7 +86,7 @@ public class MenuListener implements MouseListener {
 					MainValues.optionsMenu = true;
 					Window.Layer.remove(Window.menuPanel);
 					Window.Layer.add(Window.optionsPanel);
-				} else if(mY > (9.0*3.0/4-1.0/2)*MainValues.resolution && mY < (9.0*2.0/4+1.0/2)*MainValues.resolution) { //exit
+				} else if(mY > (9.0*3.0/4-1.0/2)*MainValues.resolution && mY < ((9.0*3.0/4)+(1.0/2))*MainValues.resolution) { //exit
 					System.exit(0);
 				}
 			}

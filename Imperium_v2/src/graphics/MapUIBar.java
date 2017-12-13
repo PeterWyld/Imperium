@@ -1,5 +1,6 @@
 package graphics;
 
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Image;
@@ -23,6 +24,7 @@ public class MapUIBar extends JPanel{
 	boolean savingMap = false;
 	int res = MainValues.resolution;
 	String saveText = "Sample";
+	Font saveBox = new Font("saveBox", Font.PLAIN, (int) Math.ceil(res/2));
 	
 	static TileImageLoader battleTiles = new TileImageLoader();
 	Image[] imgArr = battleTiles.LoadImages();
@@ -76,7 +78,8 @@ public class MapUIBar extends JPanel{
 			}
 		} else {
 			g2d.drawImage(writeBG, res, res/5, 6*res, res/2, null);
-			g2d.drawString(saveText, res, (int) Math.ceil(3/2.0 *res));
+			g2d.setFont(saveBox);
+			g2d.drawString(saveText, res, (int) Math.ceil(3.0/5 * res));
 		}
 	}
 }

@@ -19,6 +19,7 @@ public class MenuGfx extends JPanel{
 	File OptionsBtnHvr = new File("res/buttonHoverOptions.png");
 	File ExitBtnDef = new File("res/buttonDefaultExit.png");
 	File ExitBtnHvr = new File("res/buttonHoverExit.png");
+	int res = MainValues.resolution;
 	
 	Image bg, playDef, playHvr, optDef, optHvr, exitDef, exitHvr;
 
@@ -37,17 +38,17 @@ public class MenuGfx extends JPanel{
 
 			Graphics g2d = (Graphics2D) g;
 			
-			//	((16/number)-(imgSize/2))*MainValues.resolution
+			//	((16/number)-(imgSize/2))*res
 			//	is the equivalent to
 			//	((The dimension of the frame/percent across screen the img is)-(size of img/2))*resolution
 			
-			//	e.g. ((16/2)-(3/2))*MainValues.resolution
+			//	e.g. ((16/2)-(3/2))*res
 			//	This will have a image with a dimension of 3*resolution and will be halfway across the screen
 			
 			g2d.drawImage(bg, 0, 0, MainValues.width, MainValues.height, null);
-			g2d.drawImage(playDef, (int) Math.round((16/2-2.5/2)*MainValues.resolution), (int) Math.round((9.0/4-1.0/2)*MainValues.resolution), (int) Math.round(2.5*MainValues.resolution), 1*MainValues.resolution, null);
-			g2d.drawImage(optDef, (int) Math.round((16/2-2.5/2)*MainValues.resolution), (int) Math.round((9.0*5.0/12-1.0/2)*MainValues.resolution), (int) Math.round(2.5*MainValues.resolution), 1*MainValues.resolution, null);
-			g2d.drawImage(optDef, (int) Math.round((16/2-2.5/2)*MainValues.resolution), (int) Math.round((9.0*7.0/12-1.0/2)*MainValues.resolution), (int) Math.round(2.5*MainValues.resolution), 1*MainValues.resolution, null);
-			g2d.drawImage(exitDef, (int) Math.round((16/2-2.5/2)*MainValues.resolution), (int) Math.round((9.0*3.0/4-1.0/2)*MainValues.resolution), (int) Math.round(2.5*MainValues.resolution), 1*MainValues.resolution, null);
+			g2d.drawImage(playDef, (int) Math.round((16/2-2.5/2)*res), (int) Math.round((9.0/4-1.0/2)*res), (int) Math.round(2.5*res), 1*res, null);
+			g2d.drawImage(optDef, (int) Math.round((16/2-2.5/2)*res), (int) Math.round((9.0*5.0/12-1.0/2)*res), (int) Math.round(2.5*res), 1*res, null);
+			g2d.drawImage(optDef, (int) Math.round((16/2-2.5/2)*res), (int) Math.round((9.0*7.0/12-1.0/2)*res), (int) Math.round(2.5*res), 1*res, null);
+			g2d.drawImage(exitDef, (int) Math.round((16/2-2.5/2)*res), (int) Math.round((9.0*3.0/4-1.0/2)*res), (int) Math.round(2.5*res), 1*res, null);
 	}
 }

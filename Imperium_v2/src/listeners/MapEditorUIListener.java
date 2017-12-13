@@ -2,7 +2,9 @@ package listeners;
 
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.io.File;
 
+import utilities.CSVReader;
 import values.MainValues;
 
 public class MapEditorUIListener implements MouseListener{
@@ -50,6 +52,8 @@ public class MapEditorUIListener implements MouseListener{
 					main.Window.mapEditorUI.rghtBtnClick();
 				} else if (mX >= 7* res && mX <= 8 * res) {
 					main.Window.mapEditorUI.setSavingStatus(true);
+					CSVReader writer = new CSVReader();
+					writer.WriteCSVFile(MainValues.battleMapArray, "Maps" + File.separator + "ASavedMap.txt");
 				}
 			}
 		}
