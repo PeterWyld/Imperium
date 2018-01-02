@@ -4,12 +4,17 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.io.File;
 
+import javax.swing.JLayeredPane;
+
+import main.Window;
 import utilities.CSVReader;
 import values.MainValues;
 
 public class MapEditorUIListener implements MouseListener{
 	int res = MainValues.resolution;
 	boolean savingMap = false;
+	int uiStatus = 0; // 0 = default , 1 = saving, 2 = loading 
+	saveMapBoxListener saveKeyListener = new saveMapBoxListener();
 
 	@Override
 	public void mouseClicked(MouseEvent arg0) {
@@ -40,7 +45,7 @@ public class MapEditorUIListener implements MouseListener{
 		int mX = e.getX();
 		int mY = e.getY();
 		if(mY >= res/5 && mY <= res/5 + res/2) {
-			if (savingMap == false) {
+			if (uiStatus == 0) {
 				if(mX >= res && mX <= 3 * res/2) {
 					main.Window.mapEditorUI.lftBtnClick();
 				} else if (mX >= res && mX <= 6 * res){
@@ -52,12 +57,37 @@ public class MapEditorUIListener implements MouseListener{
 					main.Window.mapEditorUI.rghtBtnClick();
 				} else if (mX >= 7* res && mX <= 8 * res) {
 					main.Window.mapEditorUI.setSavingStatus(true);
+					uiStatus = 1;
+					main.Window.frame.addKeyListener(saveKeyListener);
+				} else if (mX >= 8.5 * res && mX <= 9.5 * res) {
+					uiStatus = 2;
+					main.Window.mapEditorUI.setSavingStatus(true);
+				} else if (mX >= 10 * res && mX <= 11 * res) { // return to main menu
+					MainValues.mainMenu = true;
+					Window.frame.addMouseListener(new MenuListener());
+					
+					Window.frame.removeMouseListener(this);
+					Window.frame.removeMouseWheelListener(new ScrollListener());
+			
+					Window.battleMapPanel.removeAll();
+					Window.Layer.remove(Window.battleMapPanel);
+					
+					Window.mapEditorUI.removeAll();
+					Window.Layer.remove(Window.mapEditorUI);
+					
+					Window.Layer.add(Window.menuPanel);
+				}
+			} else if (uiStatus == 1) {
+				if (mX >= 7* res && mX <= 8 * res) {
+					String mapName = main.Window.mapEditorUI.getMapName();
 					CSVReader writer = new CSVReader();
-					writer.WriteCSVFile(MainValues.battleMapArray, "Maps" + File.separator + "ASavedMap.txt");
+					writer.WriteCSVFile(MainValues.battleMapArray, "Maps" + File.separator + mapName + ".txt");
+				} else if (mX >= 8.5 * res && mX <= 9.5 * res) {
+					main.Window.mapEditorUI.setSavingStatus(false);
+					uiStatus = 0;
+					main.Window.frame.removeKeyListener(saveKeyListener);
 				}
 			}
 		}
-		
 	}
-
 }

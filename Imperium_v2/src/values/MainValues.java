@@ -15,6 +15,7 @@ public class MainValues {
 	public static int globalX = 0;
 	public static int globalY = 0;
 	public static List<List<String>> battleMapArray;
+	public static List<List<units.unit>> unitArray;
 	
 	//Menu Values
 	public static boolean startMenu = true;

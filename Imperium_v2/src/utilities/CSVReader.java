@@ -1,7 +1,6 @@
 package utilities;
 
 import java.io.BufferedReader;
-import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -44,7 +43,6 @@ public class CSVReader {
 		File mapFile = new File(mapName);
 		try {
 			FileWriter newFile = new FileWriter(mapFile);
-			BufferedWriter writer = new BufferedWriter(newFile);
 			StringBuffer line = new StringBuffer();
 			for(int i = 0; i <= data.size() -1; i++) {
 				for(int j = 0; j <= width; j++) {
@@ -56,9 +54,7 @@ public class CSVReader {
 			line.deleteCharAt(line.length()-2);
 			line.deleteCharAt(line.length()-1);
 			newFile.write(line.toString());
-			System.out.println(line);
-			
-			writer.close();
+			newFile.close();
 			
 		} catch (IOException e) {
 			// TODO Auto-generated catch block

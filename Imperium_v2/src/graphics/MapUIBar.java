@@ -23,8 +23,10 @@ public class MapUIBar extends JPanel{
 	int cycle = 0;
 	boolean savingMap = false;
 	int res = MainValues.resolution;
-	String saveText = "Sample";
 	Font saveBox = new Font("saveBox", Font.PLAIN, (int) Math.ceil(res/2));
+	StringBuffer textBox = new StringBuffer("Map Name");
+	int startIndex = 0;
+	int endIndex = 0;
 	
 	static TileImageLoader battleTiles = new TileImageLoader();
 	Image[] imgArr = battleTiles.LoadImages();
@@ -61,7 +63,21 @@ public class MapUIBar extends JPanel{
 	public void setSavingStatus(boolean status) {
 		savingMap = status;		
 	}
-
+	
+	public void addChar(char newChar) {
+		textBox.append(newChar);
+	}
+	
+	public void backspaceTyped() {
+		if (textBox.length() > 0) {
+			textBox.deleteCharAt(textBox.length()-1);
+		}
+	}
+	
+	public String getMapName() {
+		return textBox.toString();
+	}
+	
 	public void paintComponent(Graphics g) {
 		Graphics g2d = (Graphics2D) g;
 		g2d.drawImage(bgImage, 0, 0, MainValues.width, MainValues.width/4, null);
@@ -69,8 +85,8 @@ public class MapUIBar extends JPanel{
 			g2d.drawImage(lftBtn, res, res/5, res/2, res/2, null);
 			g2d.drawImage(rghtBtn, 6 * res, res/5, res/2, res/2, null);
 			g2d.drawImage(saveBtn, 7 * res, res/5, res, res/2, null);
-			g2d.drawImage(saveBtn, (int) Math.ceil(13.5 * res), res/5, res, res/2, null);
-			g2d.drawImage(saveBtn, (int) Math.ceil(15 * res), res/5, res, res/2, null);
+			g2d.drawImage(saveBtn, (int) Math.round(8.5 * res), res/5, res, res/2, null);
+			g2d.drawImage(saveBtn, (int) Math.round(10 * res), res/5, res, res/2, null);
 			for (int i = 0 ; i <= 8; i++) {		
 				if (cycle + i <= imgArr.length -1) {
 					g2d.drawImage(imgArr[i+cycle], (i+3) * res/2, res/5, res/2, res/2, null);
@@ -78,8 +94,16 @@ public class MapUIBar extends JPanel{
 			}
 		} else {
 			g2d.drawImage(writeBG, res, res/5, 6*res, res/2, null);
+			g2d.drawImage(saveBtn, 7 * res, res/5, res, res/2, null);
+			g2d.drawImage(saveBtn, (int) Math.round(8.5 * res), res/5, res, res/2, null);
+			g2d.drawImage(saveBtn, (int) Math.round(10 * res), res/5, res, res/2, null);
 			g2d.setFont(saveBox);
-			g2d.drawString(saveText, res, (int) Math.ceil(3.0/5 * res));
+			startIndex = textBox.length() - 12;
+			if (startIndex < 0) {
+				startIndex = 0;
+			}
+			endIndex = textBox.length();
+			g2d.drawString(textBox.toString().substring(startIndex, endIndex), res, (int) Math.ceil(3.0/5 * res));
 		}
 	}
 }
