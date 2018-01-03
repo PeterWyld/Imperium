@@ -1,0 +1,8 @@
+{
+	"nation": "CAR",
+	"fullname": "Carthagian Hoplite",
+	"health": 100,
+	"attack": 10,
+	"movement": 4,
+	"unitIconIndex": 3
+}
