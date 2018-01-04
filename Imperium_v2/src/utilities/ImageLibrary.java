@@ -52,8 +52,8 @@ public class ImageLibrary {
 		
 		// UnitImgArr
 		File CarElephant = new File("res/carthageElephantUnit.png");
-		File CarHeavCavalry = new File("res/carthageHeavCavalry.png");
-		File CarLiCavalry = new File("res/carthageLiCavalry.png");
+		File CarHeavCavalry = new File("res/carthageHeavCavalryUnit.png");
+		File CarLiCavalry = new File("res/carthageLiCavalryUnit.png");
 		File CarHoplite = new File("res/carthageHopliteUnit.png");
 		File CarSlinger = new File("res/carthageSlingerUnit.png");
 		Image carEle, carHvCav, carLiCav, carHop, carSling;
@@ -66,7 +66,7 @@ public class ImageLibrary {
 			carSling = ImageIO.read(CarSlinger);
 			unitImgArr = new Image[] {carEle, carHvCav, carLiCav, carHop, carSling};
 		} catch (Exception e) {
-			
+			System.out.println("Images failed to load");
 		}
 	}
 	public Image[] getTileImgArr() {

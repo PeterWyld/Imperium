@@ -9,19 +9,22 @@ import java.util.List;
 import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 
-import utilities.TileImageLoader;
+import units.unit;
 import values.MainValues;
 
 public class BattleMap extends JPanel {
 	private static final long serialVersionUID = 1L;
-	String mapName = "";
 	int zoom = 1;
 	int originXPos = 0;
 	int yPos = 0;
-	static TileImageLoader battleTiles = new TileImageLoader();
-	Image[] imgArr = battleTiles.LoadImages();
+	Image[] tileImgArr = main.Window.ImageUtility.getTileImgArr();
+	Image[] unitImgArr = main.Window.ImageUtility.getUnitImgArr();
 	int xPos = originXPos;
 	File BGImage = new File("res/gridLines.png");
+	List<List<String>> mapArray;
+	int imageIndex = 0;
+	int tileSize = 16;
+	unit[][] unitArray;
 	
 	Image bgImage; {
 		try { 
@@ -32,7 +35,8 @@ public class BattleMap extends JPanel {
 	}
 	
 	public void paintComponent(Graphics g) {
-		List<List<String>> mapArray = MainValues.battleMapArray;
+		mapArray = MainValues.battleMapArray;
+		unitArray = MainValues.battleUnitArray;
 		zoom = MainValues.globalZoom; //accessed inside paint component as the above code is not run during window.frame.repaint();
 		originXPos = -(MainValues.globalX);
 		yPos = -(MainValues.globalY);
@@ -45,21 +49,31 @@ public class BattleMap extends JPanel {
 			
 		//	e.g. ((16/2)-(3/2))*MainValues.resolution
 		//	This will have a image with a dimension of 3*resolution and will be halfway across the screen
-		int imageIndex = 0;
-		int tileSize = 16*zoom;
+		imageIndex = 0;
+		tileSize = 16*zoom;
 		g2d.drawImage(bgImage, 0, 0, 545, 545, null);
 			
-		for (List<String> mapLine : mapArray) {
-			for (String mapTile: mapLine) {
+		for (int i = 0; i <= mapArray.size() -1; i++) {
+			for (int j = 0; j <= mapArray.get(i).size() -1; j++) {
+				/* drawing tile */
 				try {
-					imageIndex = Integer.parseInt(mapTile); //check if input is a string
+					imageIndex = Integer.parseInt(mapArray.get(i).get(j)); //check if input is a string
 				} catch (NumberFormatException e) {
 					imageIndex = 0; //defaults to zero (snowy mountain) if not a integer
 				}
-				if((imageIndex < 0) || (imageIndex > imgArr.length - 1)) {
+				if((imageIndex < 0) || (imageIndex > tileImgArr.length - 1)) {
 					imageIndex = 0;//defaults to zero (snowy mountain) if outside of index
 				}
-				g2d.drawImage(imgArr[imageIndex], xPos, yPos, tileSize, tileSize, null);
+				g2d.drawImage(tileImgArr[imageIndex], xPos, yPos, tileSize, tileSize, null);
+				
+				/* drawing unit */
+				if (unitArray[i][j] != null) {
+					imageIndex = unitArray[i][j].getUnitImgIndex(); 
+					if((imageIndex < 0) || (imageIndex > unitImgArr.length - 1)) {
+						imageIndex = 0;//defaults to zero (Carthaginian Elephant) if outside of index
+					}
+					g2d.drawImage(unitImgArr[imageIndex], xPos, yPos, tileSize, tileSize, null);
+				}
 				xPos += tileSize;
 			}
 			yPos += tileSize;

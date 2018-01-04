@@ -2,6 +2,8 @@ package values;
 
 import java.util.List;
 
+import units.unit;
+
 public class MainValues {
 	public static int resolution = 75;
 	public static int width = 16*resolution; //height of Frame
@@ -15,7 +17,7 @@ public class MainValues {
 	public static int globalX = 0;
 	public static int globalY = 0;
 	public static List<List<String>> battleMapArray;
-	public static List<List<units.unit>> unitArray;
+	public static unit[][] battleUnitArray;
 	
 	//Menu Values
 	public static boolean startMenu = true;

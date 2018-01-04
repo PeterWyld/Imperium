@@ -13,6 +13,8 @@ public class MapEditorListener extends MouseInputAdapter{
 	int previousXVal = 0;
 	int previousYVal = 0;
 	static String tileType = "1";
+	int mX = 0;
+	int mY = 0;
 	
 	public static void setTileType(int newTileType) {
 		tileType = Integer.toString(newTileType);
@@ -20,8 +22,8 @@ public class MapEditorListener extends MouseInputAdapter{
 	
 	@Override
     public void mousePressed(MouseEvent e) {
-		int mX = e.getX();
-		int mY = e.getY();
+		mX = e.getX();
+		mY = e.getY();
 		int loopTimes = 0;
 		if (SwingUtilities.isLeftMouseButton(e)) {
 			int pressedX = mX + MainValues.globalX;
@@ -79,8 +81,8 @@ public class MapEditorListener extends MouseInputAdapter{
 	
 	@Override
     public void mouseDragged(MouseEvent e) {
-		int mX = e.getX();
-		int mY = e.getY();
+		mX = e.getX();
+		mY = e.getY();
 		int pressedX = mX + MainValues.globalX;
 		pressedX = (int) Math.ceil(pressedX/(16.0*MainValues.globalZoom)) -1;
 		int pressedY = mY + MainValues.globalY;
@@ -96,5 +98,9 @@ public class MapEditorListener extends MouseInputAdapter{
 	        previousYVal = mY;
 		}
     }
+	
+	public void removeThisMouseListener() {
+		
+	}
 
 }

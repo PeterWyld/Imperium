@@ -9,7 +9,6 @@ import java.io.File;
 import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 
-import utilities.TileImageLoader;
 import values.MainValues;
 
 public class MapUIBar extends JPanel{
@@ -28,8 +27,7 @@ public class MapUIBar extends JPanel{
 	int startIndex = 0;
 	int endIndex = 0;
 	
-	static TileImageLoader battleTiles = new TileImageLoader();
-	Image[] imgArr = battleTiles.LoadImages();
+	Image[] imgArr = main.Window.ImageUtility.getTileImgArr();
 	
 	Image bgImage, lftBtn, rghtBtn, saveBtn, writeBG, exitBtn; {
 		try { 

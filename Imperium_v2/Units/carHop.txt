@@ -3,6 +3,6 @@
 	"fullname": "Carthagian Hoplite",
 	"health": 100,
 	"attack": 10,
-	"movement": 4,
+	"movement": 2,
 	"unitIconIndex": 3
 }

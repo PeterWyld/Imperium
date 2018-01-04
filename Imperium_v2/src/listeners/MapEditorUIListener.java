@@ -4,8 +4,6 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.io.File;
 
-import javax.swing.JLayeredPane;
-
 import main.Window;
 import utilities.CSVReader;
 import values.MainValues;
@@ -15,6 +13,8 @@ public class MapEditorUIListener implements MouseListener{
 	boolean savingMap = false;
 	int uiStatus = 0; // 0 = default , 1 = saving, 2 = loading 
 	saveMapBoxListener saveKeyListener = new saveMapBoxListener();
+	int mX = 0;
+	int mY = 0;
 
 	@Override
 	public void mouseClicked(MouseEvent arg0) {
@@ -42,8 +42,8 @@ public class MapEditorUIListener implements MouseListener{
 
 	@Override
 	public void mouseReleased(MouseEvent e) {
-		int mX = e.getX();
-		int mY = e.getY();
+		mX = e.getX();
+		mY = e.getY();
 		if(mY >= res/5 && mY <= res/5 + res/2) {
 			if (uiStatus == 0) {
 				if(mX >= res && mX <= 3 * res/2) {
@@ -65,14 +65,14 @@ public class MapEditorUIListener implements MouseListener{
 				} else if (mX >= 10 * res && mX <= 11 * res) { // return to main menu
 					MainValues.mainMenu = true;
 					Window.frame.addMouseListener(new MenuListener());
-					
-					Window.frame.removeMouseListener(this);
-					Window.frame.removeMouseWheelListener(new ScrollListener());
+				
+					Window.mapEditorUI.removeMouseListener(this);
+					//Window.frame.removeMouseWheelListener(new ScrollListener());
 			
 					Window.battleMapPanel.removeAll();
 					Window.Layer.remove(Window.battleMapPanel);
 					
-					Window.mapEditorUI.removeAll();
+					//Window.mapEditorUI.removeAll();
 					Window.Layer.remove(Window.mapEditorUI);
 					
 					Window.Layer.add(Window.menuPanel);
