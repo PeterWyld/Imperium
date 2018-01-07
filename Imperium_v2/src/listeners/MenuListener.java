@@ -71,8 +71,9 @@ public class MenuListener implements MouseListener {
 					try {
 						MainValues.battleUnitArray = unitArrMaker.LoadUnits(unitJson.JsonReader("UnitLayout\\testMapJson.txt"));
 					} catch (JSONException ex1) {
-						MainValues.battleUnitArray = new unit[][] {new unit[] {new unit(1, 1, 1, 1, 1, 1)}};
+						MainValues.battleUnitArray = new unit[][] {new unit[] {new unit(1, 1, 1, 1, 1, 1,"")}};
 					}
+					main.Window.battleMapPanel.setMap(MainValues.battleMapArray, MainValues.battleUnitArray);
 					Window.frame.addMouseWheelListener(new ScrollListener());
 					GameListener myListener = new GameListener();
 					Window.frame.addMouseListener(myListener);
@@ -89,6 +90,8 @@ public class MenuListener implements MouseListener {
 					MapEditorListener myListener = new MapEditorListener();
 					Window.battleMapPanel.addMouseListener(myListener);
 					Window.battleMapPanel.addMouseMotionListener(myListener);
+					MainValues.battleUnitArray = new unit[][] {new unit[1]};
+					main.Window.battleMapPanel.setMap(MainValues.battleMapArray, MainValues.battleUnitArray);
 					
 					Window.mapEditorUI.setLocation(0, 8 * MainValues.resolution);
 					Window.Layer.add(Window.mapEditorUI, JLayeredPane.MODAL_LAYER);

@@ -7,6 +7,7 @@ import java.util.List;
 import javax.swing.SwingUtilities;
 import javax.swing.event.MouseInputAdapter;
 
+import units.unit;
 import values.MainValues;
 
 public class MapEditorListener extends MouseInputAdapter{
@@ -15,6 +16,7 @@ public class MapEditorListener extends MouseInputAdapter{
 	static String tileType = "1";
 	int mX = 0;
 	int mY = 0;
+	List<List<unit>> tempUnitList = new LinkedList<List<unit>>();
 	
 	public static void setTileType(int newTileType) {
 		tileType = Integer.toString(newTileType);
@@ -26,6 +28,7 @@ public class MapEditorListener extends MouseInputAdapter{
 		mY = e.getY();
 		int loopTimes = 0;
 		if (SwingUtilities.isLeftMouseButton(e)) {
+			
 			int pressedX = mX + MainValues.globalX;
 			pressedX = (int) Math.ceil(pressedX/(16.0*MainValues.globalZoom)) -1;
 			int pressedY = mY + MainValues.globalY;
@@ -71,6 +74,9 @@ public class MapEditorListener extends MouseInputAdapter{
 			}
 			
 			MainValues.battleMapArray.get(pressedY).set(pressedX, tileType);
+			main.Window.battleMapPanel.setMap(MainValues.battleMapArray, MainValues.battleUnitArray);
+			MainValues.battleUnitArray = new unit[MainValues.battleMapArray.size()][MainValues.battleMapArray.get(0).size()];
+			main.Window.battleMapPanel.setMap(MainValues.battleMapArray, MainValues.battleUnitArray);
 			
 		} else if (SwingUtilities.isRightMouseButton(e)) {
 	    	previousXVal = mX;

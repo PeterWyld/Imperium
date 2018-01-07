@@ -21,7 +21,7 @@ public class Window{
 	public static JPanel startPanel = new StartGfx();
 	public static JPanel menuPanel = new MenuGfx();
 	public static JPanel optionsPanel = new OptionsGfx();
-	public static JPanel battleMapPanel = new BattleMap();
+	public static BattleMap battleMapPanel = new BattleMap();
 	public static MapUIBar mapEditorUI = new MapUIBar(); // not simply declared as a JPanel as it has its own method
 	
 	public static void window() {

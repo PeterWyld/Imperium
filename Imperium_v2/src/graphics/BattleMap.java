@@ -14,17 +14,17 @@ import values.MainValues;
 
 public class BattleMap extends JPanel {
 	private static final long serialVersionUID = 1L;
-	int zoom = 1;
-	int originXPos = 0;
-	int yPos = 0;
-	Image[] tileImgArr = main.Window.ImageUtility.getTileImgArr();
-	Image[] unitImgArr = main.Window.ImageUtility.getUnitImgArr();
-	int xPos = originXPos;
-	File BGImage = new File("res/gridLines.png");
-	List<List<String>> mapArray;
-	int imageIndex = 0;
-	int tileSize = 16;
-	unit[][] unitArray;
+	private int zoom = 1;
+	private int originXPos = 0;
+	private int yPos = 0;
+	private Image[] tileImgArr = main.Window.ImageUtility.getTileImgArr();
+	private Image[] unitImgArr = main.Window.ImageUtility.getUnitImgArr();
+	private int xPos = originXPos;
+	private File BGImage = new File("res/gridLines.png");
+	private List<List<String>> mapArray;
+	private int imageIndex = 0;
+	private int tileSize = 16;
+	private unit[][] unitArray = new unit[][] {new unit[0]};
 	
 	Image bgImage; {
 		try { 
@@ -34,9 +34,13 @@ public class BattleMap extends JPanel {
 		}
 	}
 	
+	public void setMap(List<List<String>> newMapArray, unit[][] newUnitArray) {
+		mapArray = newMapArray;
+		unitArray = newUnitArray;
+	}
+	
+	@Override
 	public void paintComponent(Graphics g) {
-		mapArray = MainValues.battleMapArray;
-		unitArray = MainValues.battleUnitArray;
 		zoom = MainValues.globalZoom; //accessed inside paint component as the above code is not run during window.frame.repaint();
 		originXPos = -(MainValues.globalX);
 		yPos = -(MainValues.globalY);
@@ -51,6 +55,7 @@ public class BattleMap extends JPanel {
 		//	This will have a image with a dimension of 3*resolution and will be halfway across the screen
 		imageIndex = 0;
 		tileSize = 16*zoom;
+		
 		g2d.drawImage(bgImage, 0, 0, 545, 545, null);
 			
 		for (int i = 0; i <= mapArray.size() -1; i++) {

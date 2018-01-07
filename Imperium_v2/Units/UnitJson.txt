@@ -1,0 +1,40 @@
+{
+	"Units": [ {
+			"nation": "CAR",
+			"fullname": "Carthagian Elephant",
+			"health": 100,
+			"attack": 10,
+			"movement": 4,
+			"unitIconIndex": 0
+		}, {
+			"nation": "CAR",
+			"fullname": "Carthagian Heavy Cavalry",
+			"health": 100,
+			"attack": 10,
+			"movement": 4,
+			"unitIconIndex": 1
+		}, {
+			"nation": "CAR",
+			"fullname": "Carthagian Light Cavalry",
+			"health": 100,
+			"attack": 10,
+			"movement": 4,
+			"unitIconIndex": 2
+		}, {
+			"nation": "CAR",
+			"fullname": "Carthagian Hoplite",
+			"health": 100,
+			"attack": 10,
+			"movement": 2,
+			"unitIconIndex": 3
+		}, {
+			"nation": "CAR",
+			"fullname": "Carthagian Slinger",
+			"health": 100,
+			"attack": 10,
+			"movement": 2,
+			"unitIconIndex": 4
+		}
+	]
+}
+		
