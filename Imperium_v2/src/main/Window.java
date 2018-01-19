@@ -11,10 +11,12 @@ import graphics.BattleMap;
 import graphics.MapUIBar;
 import listeners.MenuListener;
 import utilities.ImageLibrary;
+import utilities.JsonLibrary;
 import values.MainValues;
 
 public class Window{
 	public static ImageLibrary ImageUtility = new ImageLibrary();
+	public static JsonLibrary jsonUnits = new JsonLibrary();
 	public static JFrame frame = new JFrame(MainValues.title);
 	public static JLayeredPane Layer = new JLayeredPane();
 	

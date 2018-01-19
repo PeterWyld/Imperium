@@ -1,6 +1,7 @@
 package utilities;
 
-import org.json.JSONArray;
+import java.util.List;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -9,20 +10,52 @@ import values.MainValues;
 
 public class UnitLoader {
 	
-	public unit[][] LoadUnits(JSONObject layoutJson) throws JSONException {
-		JsonParser unitFinder = new JsonParser();
-		String unitName = "";
+	public unit[][] LoadUnits(String mapName) throws JSONException {
+		CSVReader unitLayoutReader = new CSVReader();
+		List<List<String>> unitLayout = unitLayoutReader.ReadCSVFile("PlayerUnitLayout\\" + mapName + ".txt");
 		JSONObject unitJson;
-		unit[][] unitArr = new unit[MainValues.battleMapArray.size()][MainValues.battleMapArray.get(0).size()];
-		JSONArray armyArr = layoutJson.getJSONArray("Army");
-		for(int i = 0; i <= armyArr.length() - 1; i++) {
-			unitName = armyArr.getJSONObject(i).getString("type");
-			unitJson = unitFinder.JsonReader("Units\\" + unitName + ".txt");
-			
-			unit newUnit = new unit(armyArr.getJSONObject(i).getInt("xPos"), armyArr.getJSONObject(i).getInt("yPos"),
-					unitJson.getInt("health"), unitJson.getInt("attack"), unitJson.getInt("movement"),
-					unitJson.getInt("unitIconIndex"), unitJson.getString("fullname"));
-			unitArr[armyArr.getJSONObject(i).getInt("yPos")][armyArr.getJSONObject(i).getInt("xPos")] = newUnit;
+		int unitIndex = 0;
+		int ySize = MainValues.battleMapArray.size();
+		int xSize = MainValues.battleMapArray.get(0).size();		
+		unit[][] unitArr = new unit[ySize][xSize];
+		
+		//Player's Units
+		for(int i = 0; i <= ySize - 1; i++) {
+			for (int j = 0; j <= xSize -1; j++) {
+				try {
+					unitIndex = Integer.parseInt(unitLayout.get(i).get(j));
+				} catch (Exception e) {
+					unitIndex = -1;
+				}
+				if (unitIndex != -1) {
+					unitJson = main.Window.jsonUnits.getUnit(unitIndex);
+					
+					unit newUnit = new unit(j, i, unitJson.getInt("health"), unitJson.getInt("attack"), 
+							unitJson.getInt("movement"), unitJson.getInt("unitIconIndex"),
+							unitJson.getString("fullname"), true);
+					unitArr[i][j] = newUnit;
+				}
+			}
+		}
+		
+		// Enemy Units
+		unitLayout = unitLayoutReader.ReadCSVFile("EnemyUnitLayout\\" + mapName + ".txt");
+		for(int i = 0; i <= unitLayout.size() - 1; i++) {
+			for (int j = 0; j <= unitLayout.get(i).size() -1; j++) {
+				try {
+					unitIndex = Integer.parseInt(unitLayout.get(i).get(j));
+				} catch (Exception e) {
+					unitIndex = -1;
+				}
+				if (unitIndex != -1) {
+					unitJson = main.Window.jsonUnits.getUnit(unitIndex);
+					
+					unit newUnit = new unit(j, i, unitJson.getInt("health"), unitJson.getInt("attack"), 
+							unitJson.getInt("movement"), unitJson.getInt("unitIconIndex"),
+							unitJson.getString("fullname"), false);
+					unitArr[i][j] = newUnit;
+				}
+			}
 		}
 		return unitArr;
 		

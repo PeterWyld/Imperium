@@ -1,5 +1,6 @@
 package graphics;
 
+import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Image;
@@ -25,6 +26,12 @@ public class BattleMap extends JPanel {
 	private int imageIndex = 0;
 	private int tileSize = 16;
 	private unit[][] unitArray = new unit[][] {new unit[0]};
+	private int[][] highlights;
+	private Color transparentBlue = new Color(0f, 0f, 1f, 0.25f );
+	private Color transparentRed = new Color(1f, 0f, 0f, 0.25f);
+	private Color invalidMove = new Color(1f, 0f, 0f, 0.5f);
+	private Color isFriendly = new Color(0f, 1f, 0f, 0.25f);
+	private Color[] colorArr = new Color[] {transparentBlue, transparentRed, invalidMove,isFriendly};
 	
 	Image bgImage; {
 		try { 
@@ -34,9 +41,21 @@ public class BattleMap extends JPanel {
 		}
 	}
 	
+	public void addTileHighlight(int yPos, int xPos, int colourIndex) {
+		// 0 = no highlight, 1 = blue, 2 = red, 3 = invalidMove, 4 = friendly
+		if (colourIndex <= colorArr.length && colourIndex >= 0) {
+			highlights[yPos][xPos] = colourIndex;
+		}
+	}
+	
+	public void clearHighlights() {
+		highlights = new int[mapArray.size()][mapArray.get(0).size()];
+	}
+	
 	public void setMap(List<List<String>> newMapArray, unit[][] newUnitArray) {
 		mapArray = newMapArray;
 		unitArray = newUnitArray;
+		highlights = new int[mapArray.size()][mapArray.get(0).size()];
 	}
 	
 	@Override
@@ -78,6 +97,11 @@ public class BattleMap extends JPanel {
 						imageIndex = 0;//defaults to zero (Carthaginian Elephant) if outside of index
 					}
 					g2d.drawImage(unitImgArr[imageIndex], xPos, yPos, tileSize, tileSize, null);
+				}
+				if (highlights[i][j] != 0) { // so that no rec is drawn if there is no highlight
+					g2d.setColor(colorArr[highlights[i][j] -1]);
+					g2d.drawRect(xPos, yPos, tileSize, tileSize); //gives a nice outline
+					g2d.fillRect(xPos, yPos, tileSize, tileSize);
 				}
 				xPos += tileSize;
 			}

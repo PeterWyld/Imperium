@@ -34,6 +34,118 @@
 			"attack": 10,
 			"movement": 2,
 			"unitIconIndex": 4
+		}, {
+			"nation": "ROM",
+			"fullname": "Roman Legionary",
+			"health": 100,
+			"attack": 10,
+			"movement": 4,
+			"unitIconIndex": 5
+		}, {
+			"nation": "ROM",
+			"fullname": "Roman Archer",
+			"health": 100,
+			"attack": 10,
+			"movement": 4,
+			"unitIconIndex": 6
+		}, {
+			"nation": "ROM",
+			"fullname": "Roman Heavy Cavalry",
+			"health": 100,
+			"attack": 10,
+			"movement": 4,
+			"unitIconIndex": 7
+		}, {
+			"nation": "ROM",
+			"fullname": "Roman Light Cavalry",
+			"health": 100,
+			"attack": 10,
+			"movement": 4,
+			"unitIconIndex": 8
+		}, {
+			"nation": "ROM",
+			"fullname": "Roman Skirmisher",
+			"health": 100,
+			"attack": 10,
+			"movement": 4,
+			"unitIconIndex": 9
+		}, {
+			"nation": "PER",
+			"fullname": "Persian Immortal",
+			"health": 100,
+			"attack": 10,
+			"movement": 4,
+			"unitIconIndex": 10
+		}, {
+			"nation": "PER",
+			"fullname": "Persian Archer",
+			"health": 100,
+			"attack": 10,
+			"movement": 4,
+			"unitIconIndex": 11
+		}, {
+			"nation": "PER",
+			"fullname": "Persian Elephant",
+			"health": 100,
+			"attack": 10,
+			"movement": 4,
+			"unitIconIndex": 12
+		}, {
+			"nation": "PER",
+			"fullname": "Persian Heavy Cavalry",
+			"health": 100,
+			"attack": 10,
+			"movement": 4,
+			"unitIconIndex": 13
+		}, {
+			"nation": "PER",
+			"fullname": "Persian Light Cavalry",
+			"health": 100,
+			"attack": 10,
+			"movement": 4,
+			"unitIconIndex": 14
+		}, {
+			"nation": "PER",
+			"fullname": "Persian Sparabara",
+			"health": 100,
+			"attack": 10,
+			"movement": 4,
+			"unitIconIndex": 15
+		}, {
+			"nation": "GRE",
+			"fullname": "Greek Companion Cavalry",
+			"health": 100,
+			"attack": 10,
+			"movement": 4,
+			"unitIconIndex": 16
+		}, {
+			"nation": "GRE",
+			"fullname": "Greek Archer",
+			"health": 100,
+			"attack": 10,
+			"movement": 4,
+			"unitIconIndex": 17
+		}, {
+			"nation": "GRE",
+			"fullname": "Greek Light Cavalry",
+			"health": 100,
+			"attack": 10,
+			"movement": 4,
+			"unitIconIndex": 18
+		}, {
+			"nation": "GRE",
+			"fullname": "Greek Hoplite",
+			"health": 100,
+			"attack": 10,
+			"movement": 4,
+			"unitIconIndex": 19
+		}, {
+			"nation": "GRE",
+			"fullname": "Greek Peltasts",
+			"health": 100,
+			"attack": 10,
+			"movement": 4,
+			"unitIconIndex": 20
 		}
 	]
 }

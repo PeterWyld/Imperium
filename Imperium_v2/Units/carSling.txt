@@ -1,8 +1,0 @@
-{
-	"nation": "CAR",
-	"fullname": "Carthagian Slinger",
-	"health": 100,
-	"attack": 10,
-	"movement": 2,
-	"unitIconIndex": 4
-}

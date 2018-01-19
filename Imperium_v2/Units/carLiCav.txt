@@ -1,8 +1,0 @@
-{
-	"nation": "CAR",
-	"fullname": "Carthagian Light Cavalry",
-	"health": 100,
-	"attack": 10,
-	"movement": 4,
-	"unitIconIndex": 2
-}

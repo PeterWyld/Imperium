@@ -23,6 +23,7 @@ public class GameListener extends MouseInputAdapter {
 	List<int[]> path = new LinkedList<int[]>();
 	int[] coordinates;
 	boolean pathValid = true;
+	boolean attackedUnit = false;
 	
 	@Override
     public void mousePressed(MouseEvent e) {
@@ -36,8 +37,13 @@ public class GameListener extends MouseInputAdapter {
 			pressedY = (int) Math.ceil(pressedY/(16.0*MainValues.globalZoom)) -1;
 			if (pressedX >= 0 && pressedX <= MainValues.battleMapArray.get(0).size() -1
 					&& pressedY >= 0 && pressedY <= MainValues.battleMapArray.size() -1) {
-				selection = MainValues.battleUnitArray[pressedY][pressedX];
+				if (MainValues.battleUnitArray[pressedY][pressedX] != null) {
+					selection = MainValues.battleUnitArray[pressedY][pressedX];
+					main.Window.battleMapPanel.addTileHighlight(pressedY, pressedX, 1);
+				}
 			}
+			previousPressedX = pressedX;
+			previousPressedY = pressedY;
 			
 		} else if (SwingUtilities.isRightMouseButton(e)) {
 	    	previousXVal = mX;
@@ -54,26 +60,45 @@ public class GameListener extends MouseInputAdapter {
 			pressedX = (int) Math.ceil(pressedX/(16.0*MainValues.globalZoom)) -1;
 			pressedY = mY + MainValues.globalY;
 			pressedY = (int) Math.ceil(pressedY/(16.0*MainValues.globalZoom)) -1;
-			if (pressedX != previousPressedX || pressedY != previousPressedY) {
-				previousPressedX = pressedX;
-				previousPressedY = pressedY;
-				if (pressedX >= 0 && pressedX <= MainValues.battleMapArray.get(0).size() -1
-						&& pressedY >= 0 && pressedY <= MainValues.battleMapArray.size() -1) {
-					if (selection != null && pathValid) {
-						coordinates = new int[] {pressedY, pressedX};
-						path.add(coordinates);
-						if (path.size() - 3 >= 0) {
-							if (path.get(path.size() - 3).equals(coordinates)) { //check if the same as tile previously selected
-								path.remove(path.size() - 1);//removes last two items
-								path.remove(path.size() - 2);
-								/* this means that if the user hovers over tiles 1,2,3,2 (in that order
-								 	then the path will be amended to 1,2. However if they hover over 1,2,3,4,2 then the
-								 	path will not be amended*/
+			if (selection != null) {
+				if (pressedX != previousPressedX || pressedY != previousPressedY) {
+					previousPressedX = pressedX;
+					previousPressedY = pressedY;
+					if (pressedX >= 0 && pressedX <= MainValues.battleMapArray.get(0).size() -1
+							&& pressedY >= 0 && pressedY <= MainValues.battleMapArray.size() -1) { //check if inside map bounds
+						if (path.size() -1 >= 0 && pressedY == selection.getCoordinates()[0] && pressedX== selection.getCoordinates()[1]) {// see if has returned to start pos
+							path.clear();
+							main.Window.battleMapPanel.clearHighlights();
+						} else if (pathValid) {
+							coordinates = new int[] {pressedY, pressedX};
+							path.add(coordinates);
+							if (MainValues.battleUnitArray[pressedY][pressedX] == null) {
+								main.Window.battleMapPanel.addTileHighlight(pressedY, pressedX, 1);
+							} else if (MainValues.battleUnitArray[pressedY][pressedX].isPlayersUnit() == false) {
+								main.Window.battleMapPanel.addTileHighlight(pressedY, pressedX, 2);
+							} else {
+								main.Window.battleMapPanel.addTileHighlight(pressedY, pressedX, 4);
 							}
+							if (path.size() - 3 >= 0) {
+								if (path.get(path.size() - 3)[0] == coordinates[0] && path.get(path.size() - 3)[1] == coordinates[1]) { //check if the same as tile previously selected
+									path.remove(path.size() - 1);//removes last two items
+									main.Window.battleMapPanel.addTileHighlight(path.get(path.size() -1)[0], path.get(path.size() -1)[1], 0);
+									path.remove(path.size() - 1);
+									
+									/* this means that if the user hovers over tiles 1,2,3,2 (in that order
+									 	then the path will be amended to 1,2. However if they hover over 1,2,3,4,2 then the
+									 	path will not be amended*/
+								}
+							}
+							if (path.size() > selection.getMovement()) {
+								main.Window.battleMapPanel.addTileHighlight(pressedY, pressedX, 3);
+							}
+						} else {
+							main.Window.battleMapPanel.addTileHighlight(pressedY, pressedX, 3);
 						}
-					} 
-				} else {
-					pathValid = false;
+					} else {
+						pathValid = false;
+					}
 				}
 			}
 		} else if (SwingUtilities.isRightMouseButton(e)) {
@@ -91,5 +116,7 @@ public class GameListener extends MouseInputAdapter {
 		}
 		path.clear();
 		pathValid = true;
+		selection = null;
+		main.Window.battleMapPanel.clearHighlights();
 	}
 }

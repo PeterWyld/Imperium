@@ -66,12 +66,11 @@ public class MenuListener implements MouseListener {
 					
 					CSVReader fileReader = new CSVReader();
 					MainValues.battleMapArray = fileReader.ReadCSVFile("Maps" + File.separator + "Peter's Map.txt");
-					JsonParser unitJson = new JsonParser();
 					UnitLoader unitArrMaker = new UnitLoader();
 					try {
-						MainValues.battleUnitArray = unitArrMaker.LoadUnits(unitJson.JsonReader("UnitLayout\\testMapJson.txt"));
+						MainValues.battleUnitArray = unitArrMaker.LoadUnits("testMapJson");
 					} catch (JSONException ex1) {
-						MainValues.battleUnitArray = new unit[][] {new unit[] {new unit(1, 1, 1, 1, 1, 1,"")}};
+						MainValues.battleUnitArray = new unit[][] {new unit[] {new unit(1, 1, 1, 1, 1, 1,"", true)}};
 					}
 					main.Window.battleMapPanel.setMap(MainValues.battleMapArray, MainValues.battleUnitArray);
 					Window.frame.addMouseWheelListener(new ScrollListener());
