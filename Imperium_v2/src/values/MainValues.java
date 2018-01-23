@@ -10,6 +10,7 @@ public class MainValues {
 	public static int height = 9*resolution; //width of Frame
 	
 	public static int fps = 60;
+	public static int titleTimerIndex = 0;
 	
 	public static String title = "Imperium";
 	

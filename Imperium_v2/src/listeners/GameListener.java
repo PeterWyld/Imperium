@@ -38,8 +38,12 @@ public class GameListener extends MouseInputAdapter {
 			if (pressedX >= 0 && pressedX <= MainValues.battleMapArray.get(0).size() -1
 					&& pressedY >= 0 && pressedY <= MainValues.battleMapArray.size() -1) {
 				if (MainValues.battleUnitArray[pressedY][pressedX] != null) {
-					selection = MainValues.battleUnitArray[pressedY][pressedX];
-					main.Window.battleMapPanel.addTileHighlight(pressedY, pressedX, 1);
+					if (MainValues.battleUnitArray[pressedY][pressedX].isPlayersUnit() == true) {
+						selection = MainValues.battleUnitArray[pressedY][pressedX];
+						main.Window.battleMapPanel.addTileHighlight(pressedY, pressedX, 1);
+					} else {
+						main.Window.battleMapPanel.addTileHighlight(pressedY, pressedX, 2);
+					}
 				}
 			}
 			previousPressedX = pressedX;

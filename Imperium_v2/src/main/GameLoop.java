@@ -8,6 +8,7 @@ import values.MainValues;
 public class GameLoop {
 	
 	static Timer t = new Timer();
+	static int index = 0;
 	
 	public static void run() {
 		t.scheduleAtFixedRate(new TimerTask() {
@@ -15,6 +16,10 @@ public class GameLoop {
 			@Override
 			public void run() {
 				Window.frame.repaint();
+				MainValues.titleTimerIndex += 1;
+				if (MainValues.titleTimerIndex > 250) {
+					MainValues.titleTimerIndex = 0;
+				}
 			}
 
 		}, 0, 1000 / MainValues.fps);

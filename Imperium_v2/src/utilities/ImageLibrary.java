@@ -4,6 +4,7 @@ import java.awt.Image;
 import java.io.File;
 
 import javax.imageio.ImageIO;
+import javax.swing.JOptionPane;
 
 public class ImageLibrary {
 	private Image[] tileImgArr;
@@ -47,7 +48,8 @@ public class ImageLibrary {
 			forest = ImageIO.read(ForestImage);
 			tileImgArr = new Image[] {snowMtn, swamp, snow, ocean, sand, rockyGrass, stone, road, dirt, mountain, marsh, ice, grass, coast, dryGrass, forest};
 		}	catch(Exception e) {
-			
+			JOptionPane.showMessageDialog(null, "Images failed to load", "Error", JOptionPane.INFORMATION_MESSAGE);
+			System.exit(0);
 		}
 		
 		// UnitImgArr
@@ -56,7 +58,22 @@ public class ImageLibrary {
 		File CarLiCavalry = new File("res/carthageLiCavalryUnit.png");
 		File CarHoplite = new File("res/carthageHopliteUnit.png");
 		File CarSlinger = new File("res/carthageSlingerUnit.png");
-		Image carEle, carHvCav, carLiCav, carHop, carSling;
+		File RomLegionarie = new File("res/LegionarieUnit.png");
+		File RomArcher = new File("res/romeArcherUnit.png");
+		File RomHeavCavalry = new File("res/romeHeavCavalryUnit.png");
+		File RomLiCavalry = new File("res/romeLiCavalryUnit.png");
+		File RomSkirmisher = new File("res/skirmisherUnit.png");
+		File PerImmortal = new File("res/immortalUnit.png");
+		File PerArcher = new File("res/persiaArchUnit.png");
+		File PerElephant = new File("res/persiaElephantUnit.png");
+		File PerHeavCavalry = new File("res/persiaHeavCavalryUnit.png");
+		File PerLightCavalry = new File("res/persiaLiCavalryUnit.png");
+		File PerSparabara = new File("res/sparabaraUnit.png");
+		//File  = new File("res/Unit.png");
+		
+		Image carEle, carHvCav, carLiCav, carHop, carSling,
+				romLeg, romArch, romHvCav, romLiCav, romSkrm,
+				perImor, perArch, perEle, perHvCav, perLiCav, perSpa;
 		
 		try {
 			carEle = ImageIO.read(CarElephant);
@@ -64,9 +81,27 @@ public class ImageLibrary {
 			carLiCav = ImageIO.read(CarLiCavalry);
 			carHop = ImageIO.read(CarHoplite);
 			carSling = ImageIO.read(CarSlinger);
-			unitImgArr = new Image[] {carEle, carHvCav, carLiCav, carHop, carSling};
+			
+			romLeg = ImageIO.read(RomLegionarie);
+			romArch = ImageIO.read(RomArcher);
+			romHvCav = ImageIO.read(RomHeavCavalry);
+			romLiCav = ImageIO.read(RomLiCavalry);
+			romSkrm = ImageIO.read(RomSkirmisher);
+			
+			perImor = ImageIO.read(PerImmortal);
+			perArch = ImageIO.read(PerArcher);
+			perEle = ImageIO.read(PerElephant);
+			perHvCav = ImageIO.read(PerHeavCavalry);
+			perLiCav = ImageIO.read(PerLightCavalry);
+			perSpa = ImageIO.read(PerSparabara);
+			
+			unitImgArr = new Image[] {carEle, carHvCav, carLiCav, carHop, carSling,
+					romLeg, romArch, romHvCav, romLiCav, romSkrm,
+					perImor, perArch, perEle, perHvCav, perLiCav, perSpa};
+			
 		} catch (Exception e) {
-			System.out.println("Images failed to load");
+			JOptionPane.showMessageDialog(null, "Images failed to load", "Error", JOptionPane.INFORMATION_MESSAGE);
+			System.exit(0);
 		}
 	}
 	public Image[] getTileImgArr() {
