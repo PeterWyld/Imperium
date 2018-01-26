@@ -62,7 +62,9 @@ public class MenuListener implements MouseListener {
 					MainValues.mainMenu = false;
 					Window.Layer.remove(Window.menuPanel);
 					Window.Layer.add(Window.battleMapPanel);
+					Window.Layer.add(Window.gameUI, JLayeredPane.MODAL_LAYER);
 					Window.frame.removeMouseListener(this);
+					Window.gameUI.setLocation(0, 7 * MainValues.resolution);
 					
 					CSVReader fileReader = new CSVReader();
 					MainValues.battleMapArray = fileReader.ReadCSVFile("Maps" + File.separator + "Peter's Map.txt");
@@ -74,9 +76,11 @@ public class MenuListener implements MouseListener {
 					}
 					main.Window.battleMapPanel.setMap(MainValues.battleMapArray, MainValues.battleUnitArray);
 					Window.frame.addMouseWheelListener(new ScrollListener());
+					GameUIListener uiListener = new GameUIListener();
+					Window.gameUI.addMouseListener(uiListener);
 					GameListener myListener = new GameListener();
-					Window.frame.addMouseListener(myListener);
-					Window.frame.addMouseMotionListener(myListener);
+					Window.battleMapPanel.addMouseListener(myListener);
+					Window.battleMapPanel.addMouseMotionListener(myListener);
 					
 				} else if(mY > (9.0*5.0/12-1.0/2)*MainValues.resolution && mY < (9.0*5.0/12+1.0/2)*MainValues.resolution){ //Map editor
 					MainValues.mainMenu = false;

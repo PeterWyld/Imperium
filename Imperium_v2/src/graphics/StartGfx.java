@@ -62,39 +62,19 @@ public class StartGfx extends JPanel{	//sets up the Start Up frame
 		}
 		ac = AlphaComposite.getInstance(AlphaComposite.SRC_OVER,alpha);
 		g2d.setComposite(ac);
-		g2d.drawImage(title1, (int) Math.round((16/2-3.0/2)*MainValues.resolution), (int) Math.round((9.0/4-1.0/2)*MainValues.resolution), 3*MainValues.resolution, 1*MainValues.resolution, null);
+		g2d.drawImage(title2, (int) Math.round((16/2-3.0/2)*MainValues.resolution), (int) Math.round((9.0/4-1.0/2)*MainValues.resolution), 3*MainValues.resolution, 1*MainValues.resolution, null);
 		
 		if (timerIndex >= 50 && timerIndex <= 150) {
 			alpha = (float) ((timerIndex - 50) / 100.0);
-		} else if (timerIndex >= 150 && timerIndex <= 250) {
+		} else if (timerIndex >= 150 && timerIndex <= 200) {
 			alpha = (float) (1 - (timerIndex - 150) / 100.0);
+		} else if (timerIndex >= 0 && timerIndex <= 50) {
+			alpha = (float) (0.5 - (timerIndex) / 100.0);
 		} else {
 			alpha = 0f;
 		}
 		ac = AlphaComposite.getInstance(AlphaComposite.SRC_OVER,alpha);
 		g2d.setComposite(ac);
-		g2d.drawImage(title2, (int) Math.round((16/2-3.0/2)*MainValues.resolution), (int) Math.round((9.0/4-1.0/2)*MainValues.resolution), 3*MainValues.resolution, 1*MainValues.resolution, null);
-		
-		if (timerIndex >= 100 && timerIndex <= 200) {
-			alpha = (float) ((timerIndex - 100) / 100.0);
-		} else if (timerIndex >= 200 && timerIndex <= 300) {
-			alpha = (float) (1 - (timerIndex - 200) / 100.0);
-		} else {
-			alpha = 0f;
-		}
-		ac = AlphaComposite.getInstance(AlphaComposite.SRC_OVER,alpha);
-		g2d.setComposite(ac);
-		g2d.drawImage(title3, (int) Math.round((16/2-3.0/2)*MainValues.resolution), (int) Math.round((9.0/4-1.0/2)*MainValues.resolution), 3*MainValues.resolution, 1*MainValues.resolution, null);
-		
-		if (timerIndex >= 150 && timerIndex <= 250) {
-			alpha = (float) ((timerIndex-150) / 100.0);
-		} else if (timerIndex >= 0 && timerIndex <= 100) {
-			alpha = (float) (1 - (timerIndex) / 100.0);
-		} else {
-			alpha = 0f;
-		}
-		AlphaComposite ac3 = AlphaComposite.getInstance(AlphaComposite.SRC_OVER,alpha);
-		g2d.setComposite(ac3);
 		g2d.drawImage(title4, (int) Math.round((16/2-3.0/2)*MainValues.resolution), (int) Math.round((9.0/4-1.0/2)*MainValues.resolution), 3*MainValues.resolution, 1*MainValues.resolution, null);
 	}
 }

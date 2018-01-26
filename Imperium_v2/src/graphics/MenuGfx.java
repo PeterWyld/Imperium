@@ -15,13 +15,14 @@ public class MenuGfx extends JPanel{
 	File BGImage = new File("res/TwoHeadedBirdFinal.png");
 	File PlayBtnDef = new File("res/buttonDefaultPlay.png");
 	File PlayBtnHvr = new File("res/buttonHoverPlay.png");
+	File MapEditorBtn = new File("res/buttonDefaultMapEditor.png");
 	File OptionsBtnDef = new File("res/buttonDefaultOptions.png");
 	File OptionsBtnHvr = new File("res/buttonHoverOptions.png");
 	File ExitBtnDef = new File("res/buttonDefaultExit.png");
 	File ExitBtnHvr = new File("res/buttonHoverExit.png");
 	int res = MainValues.resolution;
 	
-	Image bg, playDef, playHvr, optDef, optHvr, exitDef, exitHvr;
+	Image bg, playDef, playHvr, optDef, optHvr, exitDef, exitHvr, mpEditDef;
 
 	public void paintComponent(Graphics g) {
 		try {
@@ -32,6 +33,7 @@ public class MenuGfx extends JPanel{
 			optHvr = ImageIO.read(OptionsBtnHvr);
 			exitDef = ImageIO.read(ExitBtnDef);
 			exitHvr = ImageIO.read(ExitBtnHvr);
+			mpEditDef = ImageIO.read(MapEditorBtn);
 		}	catch(Exception e) {
 			
 		}
@@ -47,7 +49,7 @@ public class MenuGfx extends JPanel{
 			
 			g2d.drawImage(bg, 0, 0, MainValues.width, MainValues.height, null);
 			g2d.drawImage(playDef, (int) Math.round((16/2-2.5/2)*res), (int) Math.round((9.0/4-1.0/2)*res), (int) Math.round(2.5*res), 1*res, null);
-			g2d.drawImage(optDef, (int) Math.round((16/2-2.5/2)*res), (int) Math.round((9.0*5.0/12-1.0/2)*res), (int) Math.round(2.5*res), 1*res, null);
+			g2d.drawImage(mpEditDef, (int) Math.round((16/2-2.5/2)*res), (int) Math.round((9.0*5.0/12-1.0/2)*res), (int) Math.round(2.5*res), 1*res, null);
 			g2d.drawImage(optDef, (int) Math.round((16/2-2.5/2)*res), (int) Math.round((9.0*7.0/12-1.0/2)*res), (int) Math.round(2.5*res), 1*res, null);
 			g2d.drawImage(exitDef, (int) Math.round((16/2-2.5/2)*res), (int) Math.round((9.0*3.0/4-1.0/2)*res), (int) Math.round(2.5*res), 1*res, null);
 	}

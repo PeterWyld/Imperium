@@ -8,7 +8,7 @@ import main.Window;
 import utilities.CSVReader;
 import values.MainValues;
 
-public class MapEditorUIListener implements MouseListener{
+public class MapEditorUIListener implements MouseListener {
 	int res = MainValues.resolution;
 	boolean savingMap = false;
 	int uiStatus = 0; // 0 = default , 1 = saving, 2 = loading 

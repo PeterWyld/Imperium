@@ -17,7 +17,7 @@ public class GameLoop {
 			public void run() {
 				Window.frame.repaint();
 				MainValues.titleTimerIndex += 1;
-				if (MainValues.titleTimerIndex > 250) {
+				if (MainValues.titleTimerIndex > 200) {
 					MainValues.titleTimerIndex = 0;
 				}
 			}

@@ -1,7 +1,7 @@
 package listeners;
 
 import java.awt.event.MouseEvent;
-import java.util.LinkedList;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.SwingUtilities;
@@ -20,15 +20,15 @@ public class GameListener extends MouseInputAdapter {
 	unit selection = null;
 	int previousPressedX = -1;
 	int previousPressedY = -1;
-	List<int[]> path = new LinkedList<int[]>();
+	List<int[]> path = new ArrayList<int[]>();
 	int[] coordinates;
 	boolean pathValid = true;
 	boolean attackedUnit = false;
 	
 	@Override
     public void mousePressed(MouseEvent e) {
-		mX = e.getX()-6;
-		mY = e.getY()-25;
+		mX = e.getX();
+		mY = e.getY();
 
 		if (SwingUtilities.isLeftMouseButton(e)) {
 			pressedX = mX + MainValues.globalX;
@@ -57,8 +57,8 @@ public class GameListener extends MouseInputAdapter {
 	
 	@Override
     public void mouseDragged(MouseEvent e) {
-		mX = e.getX()-6;
-		mY = e.getY()-25;
+		mX = e.getX();
+		mY = e.getY();
 		if (SwingUtilities.isLeftMouseButton(e)) {
 			pressedX = mX + MainValues.globalX;
 			pressedX = (int) Math.ceil(pressedX/(16.0*MainValues.globalZoom)) -1;
@@ -73,6 +73,7 @@ public class GameListener extends MouseInputAdapter {
 						if (path.size() -1 >= 0 && pressedY == selection.getCoordinates()[0] && pressedX== selection.getCoordinates()[1]) {// see if has returned to start pos
 							path.clear();
 							main.Window.battleMapPanel.clearHighlights();
+							main.Window.battleMapPanel.addTileHighlight(selection.getCoordinates()[0], selection.getCoordinates()[1], 1);
 						} else if (pathValid) {
 							coordinates = new int[] {pressedY, pressedX};
 							path.add(coordinates);

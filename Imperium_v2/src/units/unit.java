@@ -13,6 +13,7 @@ public class unit {
 	private int unitIconIndex = 0;
 	private String unitName = "";
 	private boolean playersUnit = true;
+	private int moveIndex = 0;
 	
 	public unit(int inXIndex, int inYIndex, int inHealth, int inAttack,
 			int inMovement, int inUnitIconIndex, String newUnitName, boolean inPlayersUnit) {
@@ -34,7 +35,6 @@ public class unit {
 	}
 	
 	public void movePath(List<int[]> path) {
-		int moveIndex = 0; //starts at one as index 0 is simply where the unit already is
 		while (moveIndex <= movement -1 && moveIndex <= path.size() -1) { //movement has 1 subtracted because moveIndex is a array index (which starts at 0)
 			if (MainValues.battleUnitArray[path.get(moveIndex)[0]][path.get(moveIndex)[1]] == null) {
 				move(path.get(moveIndex)[0],path.get(moveIndex)[1]);
@@ -74,5 +74,9 @@ public class unit {
 	
 	public boolean isPlayersUnit() {
 		return playersUnit;
+	}
+	
+	public void turnOver() {
+		moveIndex = 0;
 	}
 }

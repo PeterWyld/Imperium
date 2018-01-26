@@ -13,10 +13,10 @@ import values.MainValues;
 
 public class MapUIBar extends JPanel{
 	private static final long serialVersionUID = 1L;
-	File LeftButton = new File("res/gridlines.png");
-	File RightButton = new File("res/gridlines.png");
+	File LeftButton = new File("res/lftButton.png");
+	File RightButton = new File("res/rghtButton.png");
 	File BGImage = new File("res/buttonHover.png");
-	File SaveButton = new File("res/buttonDefaultLoad.png");
+	File SaveButton = new File("res/buttonDefaultSave.png");
 	File LoadButton = new File("res/buttonDefaultLoad.png");
 	File ExitButton = new File("res/buttonDefaultExit.png");
 	File BackButton = new File("res/buttonDefaultBack.png");

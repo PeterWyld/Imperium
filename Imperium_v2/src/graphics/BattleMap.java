@@ -21,7 +21,7 @@ public class BattleMap extends JPanel {
 	private Image[] tileImgArr = main.Window.ImageUtility.getTileImgArr();
 	private Image[] unitImgArr = main.Window.ImageUtility.getUnitImgArr();
 	private int xPos = originXPos;
-	private File BGImage = new File("res/gridLines.png");
+	private File BGImage = new File("res/battleBG.png");
 	private List<List<String>> mapArray;
 	private int imageIndex = 0;
 	private int tileSize = 16;
@@ -75,7 +75,7 @@ public class BattleMap extends JPanel {
 		imageIndex = 0;
 		tileSize = 16*zoom;
 		
-		g2d.drawImage(bgImage, 0, 0, 545, 545, null);
+		g2d.drawImage(bgImage, 0, 0, MainValues.resolution*16, MainValues.resolution*7, null);
 			
 		for (int i = 0; i <= mapArray.size() -1; i++) {
 			for (int j = 0; j <= mapArray.get(i).size() -1; j++) {
