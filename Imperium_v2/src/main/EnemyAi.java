@@ -23,21 +23,20 @@ public class EnemyAi {
 				if (selection != null) {
 					if (selection.isPlayersUnit() ==  false) {
 						unitXY = selection.getCoordinates();
-						for(int i = 0; i <= selection.getMovement(); i++) {
+						for(int i = 0; i <= selection.getMovement() - 1; i++) {
 							rNumb1 = generator.nextInt(1);
 							rNumb2 = generator.nextBoolean();
 							if (rNumb2) {
-								unitXY[rNumb1] -= 1;
+								unitXY[rNumb1] = unitXY[rNumb1] - 1;
 							} else {
-								unitXY[rNumb1] += 1;
+								unitXY[rNumb1] = unitXY[rNumb1] + 1;
 							}
-							if (!(unitXY[0] < 0 || unitXY[0] > MainValues.battleMapArray.size() -1)) {
-								if (!(unitXY[1] < 0 || unitXY[0] > MainValues.battleMapArray.get(0).size() -1)) {
-									path.add(unitXY);
+							if (unitXY[0] >= 0 && unitXY[0] <= MainValues.battleMapArray.size() -1) {
+								if (unitXY[1] >= 0 && unitXY[1] <= MainValues.battleMapArray.get(0).size() -1) {
+									path.add((new int[] {unitXY[0], unitXY[1]}));
 								}
 							}
 						}
-						System.out.println(path);
 						selection.movePath(path);
 						path.clear();
 					}

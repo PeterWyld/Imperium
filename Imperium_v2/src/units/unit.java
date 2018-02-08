@@ -5,15 +5,16 @@ import java.util.List;
 import values.MainValues;
 
 public class unit {
-	private int xIndex = 0;
-	private int yIndex = 0;
-	private int health = 100;
-	private int attack = 10;
-	private int movement = 4;
+	protected int xIndex = 0;
+	protected int yIndex = 0;
+	protected int health = 100;
+	protected int attack = 10;
+	protected int movement = 4;
 	private int unitIconIndex = 0;
-	private String unitName = "";
-	private boolean playersUnit = true;
-	private int moveIndex = 0;
+	protected String unitName = "";
+	protected boolean playersUnit = true;
+	protected int moveIndex = 0;
+	protected int movementUsed = 0;
 	
 	public unit(int inXIndex, int inYIndex, int inHealth, int inAttack,
 			int inMovement, int inUnitIconIndex, String newUnitName, boolean inPlayersUnit) {
@@ -35,15 +36,17 @@ public class unit {
 	}
 	
 	public void movePath(List<int[]> path) {
-		while (moveIndex <= movement -1 && moveIndex <= path.size() -1) { //movement has 1 subtracted because moveIndex is a array index (which starts at 0)
+		moveIndex = 0;
+		while (movementUsed <= movement -1 && moveIndex <= path.size() -1) { //movement has 1 subtracted because moveIndex is a array index (which starts at 0)
 			if (MainValues.battleUnitArray[path.get(moveIndex)[0]][path.get(moveIndex)[1]] == null) {
 				move(path.get(moveIndex)[0],path.get(moveIndex)[1]);
+				movementUsed += 1;
 				moveIndex += 1;
 			} else if (MainValues.battleUnitArray[path.get(moveIndex)[0]][path.get(moveIndex)[1]].isPlayersUnit() != playersUnit) { // check if target and this unit are on different teams
 				attack(path.get(moveIndex)[0],path.get(moveIndex)[1]);
-				moveIndex = movement + 2; //exits loop
+				moveIndex = movement; //exits loop
 			} else {
-				moveIndex = movement + 2; //exits loop
+				moveIndex = movement; //exits loop
 			}
 		}
 		//movement -= moveIndex;
@@ -68,6 +71,14 @@ public class unit {
 		return new int[] {yIndex, xIndex};
 	}
 	
+	public int getYIndex() {
+		return yIndex;
+	}
+	
+	public int getXIndex() {
+		return xIndex;
+	}
+	
 	public int getMovement() {
 		return movement;
 	}
@@ -79,4 +90,9 @@ public class unit {
 	public void turnOver() {
 		moveIndex = 0;
 	}
+	
+	public int getRemainingMovement() {
+		return movement - movementUsed;
+	}
+	
 }

@@ -11,7 +11,6 @@ import org.json.JSONException;
 import main.Window;
 import units.unit;
 import utilities.CSVReader;
-import utilities.JsonParser;
 import utilities.UnitLoader;
 import values.MainValues;
 
