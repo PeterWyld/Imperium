@@ -16,7 +16,6 @@ public class EnemyAi {
 	private List<int[]> path = new LinkedList<int[]>();
 	
 	public void AiTurn() {
-		System.out.println("Player turn over");
 		for(int y = 0; y <= MainValues.battleMapArray.size() -1; y++) {
 			for(int x = 0; x <= MainValues.battleMapArray.get(0).size() -1; x++) {
 				selection = MainValues.battleUnitArray[y][x];
@@ -24,7 +23,7 @@ public class EnemyAi {
 					if (selection.isPlayersUnit() ==  false) {
 						unitXY = selection.getCoordinates();
 						for(int i = 0; i <= selection.getMovement() - 1; i++) {
-							rNumb1 = generator.nextInt(1);
+							rNumb1 = generator.nextInt(2);
 							rNumb2 = generator.nextBoolean();
 							if (rNumb2) {
 								unitXY[rNumb1] = unitXY[rNumb1] - 1;

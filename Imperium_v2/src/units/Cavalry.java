@@ -9,11 +9,12 @@ public class Cavalry extends unit{
 		// TODO Auto-generated constructor stub
 	}
 	
-	public void charge(int direction, int xOrY) {
+	public void charge(int xOrY, int direction) {
 		//xOrY: 0 = y, 1 = x
+		//direction: -1 = up/left, 1 = down/right
 		if (xOrY == 0) {
 			for (int i = 0; i <= movement && movementUsed <= movement -1; i++) {
-				if (yIndex + direction >= 0 && xIndex + direction <= MainValues.battleMapArray.size() - 1) {
+				if (yIndex + direction >= 0 && yIndex + direction <= MainValues.battleMapArray.size() - 1) {
 					if (MainValues.battleUnitArray[yIndex + direction][xIndex] == null) {
 						move(yIndex + direction, xIndex);
 					} else if (MainValues.battleUnitArray[yIndex + direction][xIndex].isPlayersUnit()) {

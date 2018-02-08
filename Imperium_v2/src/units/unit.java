@@ -88,7 +88,7 @@ public class unit {
 	}
 	
 	public void turnOver() {
-		moveIndex = 0;
+		movementUsed = 0;
 	}
 	
 	public int getRemainingMovement() {

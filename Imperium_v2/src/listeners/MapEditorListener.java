@@ -1,7 +1,7 @@
 package listeners;
 
 import java.awt.event.MouseEvent;
-import java.util.LinkedList;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.SwingUtilities;
@@ -16,7 +16,7 @@ public class MapEditorListener extends MouseInputAdapter{
 	static String tileType = "1";
 	int mX = 0;
 	int mY = 0;
-	List<List<unit>> tempUnitList = new LinkedList<List<unit>>();
+	List<List<unit>> tempUnitList = new ArrayList<List<unit>>();
 	
 	public static void setTileType(int newTileType) {
 		tileType = Integer.toString(newTileType);
@@ -51,17 +51,17 @@ public class MapEditorListener extends MouseInputAdapter{
 			}
 			
 
-			List<String> newXMapLine = new LinkedList<String>(); // creating a row of snowy mountains to be added onto list
+			List<String> newXMapLine = new ArrayList<String>(); // creating a row of snowy mountains to be added onto list
 			for (int i = 0; i <= MainValues.battleMapArray.get(0).size() - 1; i++) {
 				newXMapLine.add("0");
 			}
 			
 			loopTimes = (pressedY - MainValues.battleMapArray.size());
 			for (int i = 0; i <= loopTimes; i++) {	//pressedY is positive
-				MainValues.battleMapArray.add(new LinkedList<String>(newXMapLine));
+				MainValues.battleMapArray.add(new ArrayList<String>(newXMapLine));
 			}
 			for (int i = 0; i <= -(pressedY) -1; i++) { //pressedY is negative	
-				MainValues.battleMapArray.add(0, new LinkedList<String>(newXMapLine));
+				MainValues.battleMapArray.add(0, new ArrayList<String>(newXMapLine));
 				MainValues.globalY += 16*MainValues.globalZoom;
 			}
 			

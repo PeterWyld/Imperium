@@ -24,8 +24,8 @@ public class MapUIBar extends JPanel{
 	int cycle = 0;
 	boolean savingMap = false;
 	int res = MainValues.resolution;
-	Font saveBox = new Font("saveBox", Font.PLAIN, (int) Math.ceil(res/2));
-	StringBuffer textBox = new StringBuffer("Map Name");
+	Font saveBox = new Font("monospaced", Font.PLAIN, (int) Math.ceil(res/2));
+	StringBuffer textVar = new StringBuffer("Map Name");
 	int startIndex = 0;
 	int endIndex = 0;
 	
@@ -67,17 +67,17 @@ public class MapUIBar extends JPanel{
 	}
 	
 	public void addChar(char newChar) {
-		textBox.append(newChar);
+		textVar.append(newChar);
 	}
 	
 	public void backspaceTyped() {
-		if (textBox.length() > 0) {
-			textBox.deleteCharAt(textBox.length()-1);
+		if (textVar.length() > 0) {
+			textVar.deleteCharAt(textVar.length()-1);
 		}
 	}
 	
 	public String getMapName() {
-		return textBox.toString();
+		return textVar.toString();
 	}
 	
 	public void paintComponent(Graphics g) {
@@ -100,12 +100,12 @@ public class MapUIBar extends JPanel{
 			g2d.drawImage(backBtn, (int) Math.round(8.5 * res), res/5, res, res/2, null);
 			g2d.drawImage(saveBtn, (int) Math.round(10 * res), res/5, res, res/2, null);
 			g2d.setFont(saveBox);
-			startIndex = textBox.length() - 12;
+			startIndex = textVar.length() - 19;
 			if (startIndex < 0) {
 				startIndex = 0;
 			}
-			endIndex = textBox.length();
-			g2d.drawString(textBox.toString().substring(startIndex, endIndex), res, (int) Math.ceil(3.0/5 * res));
+			endIndex = textVar.length();
+			g2d.drawString(textVar.toString().substring(startIndex, endIndex), res, (int) Math.ceil(3.0/5 * res));
 		}
 	}
 }
