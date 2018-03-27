@@ -20,7 +20,8 @@ public class Cavalry extends unit{
 					} else if (MainValues.battleUnitArray[yIndex + direction][xIndex].isPlayersUnit()) {
 						movementUsed = movement;
 					} else {
-						MainValues.battleUnitArray[yIndex + direction][xIndex].takeDamage(50);
+						MainValues.battleUnitArray[yIndex + direction][xIndex].takeDamage((i+1)*10);
+						movementUsed = movement;
 					}
 				}
 				movementUsed += 1;

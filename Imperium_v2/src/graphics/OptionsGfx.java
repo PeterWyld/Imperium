@@ -14,14 +14,21 @@ public class OptionsGfx extends JPanel {
 	private static final long serialVersionUID = 1L;
 	File BGImage = new File("res/TwoHeadedBirdFinal.png");
 	File PlayBtnDef = new File("res/buttonDefaultPlay.png");
+	File BackBtnDef = new File("res/buttonDefaultBack.png");
+	File leftArrowButton = new File("res/lftButton.png");
+	File rightArrowButton = new File("res/rghtButton.png");
+	int res = 0;
 
-	Image bg, playDef;
+	Image bg, playDef, backDef, lftBtn, rghtBtn;
 
 	public void paintComponent(Graphics g) {
+		res = MainValues.resolution;
 		try {
 			bg = ImageIO.read(BGImage);
 			playDef = ImageIO.read(PlayBtnDef);
-
+			backDef = ImageIO.read(BackBtnDef);
+			lftBtn = ImageIO.read(leftArrowButton);
+			rghtBtn = ImageIO.read(rightArrowButton);
 		}	catch(Exception e) {
 			
 		}
@@ -36,11 +43,9 @@ public class OptionsGfx extends JPanel {
 			//	This will have a image with a dimension of 3*resolution and will be halfway across the screen
 			
 			g2d.drawImage(bg, 0, 0, MainValues.width, MainValues.height, null);
-			//g2d.drawImage(playDef, (int) Math.round((16/4-3.0/2)*MainValues.resolution), (int) Math.round((9.0/3-1.0/2)*MainValues.resolution), 3*MainValues.resolution, 1*MainValues.resolution, null);
-			//g2d.drawImage(playDef, (int) Math.round((16/4-3.0/2)*MainValues.resolution), (int) Math.round((9.0/2-1.0/2)*MainValues.resolution), 3*MainValues.resolution, 1*MainValues.resolution, null);
-			//g2d.drawImage(playDef, (int) Math.round((16/4-3.0/2)*MainValues.resolution), (int) Math.round((9.0*2.0/3-1.0/2)*MainValues.resolution), 3*MainValues.resolution, 1*MainValues.resolution, null);
-			//g2d.drawImage(playDef, (int) Math.round((16/2-3.0/2)*MainValues.resolution), (int) Math.round((9.0/3-1.0/2)*MainValues.resolution), 3*MainValues.resolution, 1*MainValues.resolution, null);
-			//g2d.drawImage(playDef, (int) Math.round((16/2-3.0/2)*MainValues.resolution), (int) Math.round((9.0/2-1.0/2)*MainValues.resolution), 3*MainValues.resolution, 1*MainValues.resolution, null);
-			//g2d.drawImage(playDef, (int) Math.round((16/2-3.0/2)*MainValues.resolution), (int) Math.round((9.0*2.0/3-1.0/2)*MainValues.resolution), 3*MainValues.resolution, 1*MainValues.resolution, null);
+			g2d.drawImage(playDef, (int) Math.round((16.0/2-2.5/2)*res), (int) Math.round((9.0*5.0/12-1.0/2)*res), (int) Math.round(2.5*res), res, null);
+			g2d.drawImage(backDef, (int) Math.round((16.0/2-2.5/2)*res), (int) Math.round((9.0*7.0/12-1.0/2)*res), (int) Math.round(2.5*res), res, null);
+			g2d.drawImage(rghtBtn, (int) Math.round((16.0/2+2.5/2)*res), (int) Math.round((9.0*5.0/12-1.0/2)*res), res, res, null);
+			g2d.drawImage(lftBtn, (int) Math.round((16.0/2-4.5/2)*res), (int) Math.round((9.0*5.0/12-1.0/2)*res), res, res, null);
 	}
 }

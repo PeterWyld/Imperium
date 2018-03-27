@@ -4,6 +4,8 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
 import main.Window;
+import units.Cavalry;
+import units.Ranged;
 import units.unit;
 import values.MainValues;
 
@@ -54,7 +56,7 @@ public class GameUIListener implements MouseListener{
 		}
 		if (selection == null) {
 		
-		} else {
+		} else if (selection instanceof units.Cavalry){
 			if (mY >= res * 0.1 && mY <= res * 1.1) {
 				if (mX >= (4 * res) && mX <= (5 * res)) {
 					main.Window.manager.setAction(1);
@@ -90,6 +92,24 @@ public class GameUIListener implements MouseListener{
 					}
 					
 					Window.manager.setAction(1);
+				}
+			}
+		} else if (selection instanceof units.Ranged) {
+			if (mY >= res * 0.1 && mY <= res * 1.1) {
+				if (mX >= (4 * res) && mX <= (5 * res)) {
+					main.Window.manager.setAction(2);
+					for (int i = 0; i <= MainValues.battleMapArray.size()-1; i++) {
+						for (int j = 0; j <= MainValues.battleMapArray.get(0).size() -1;j++) {
+							if (Math.round(Math.hypot((selection.getXIndex() - j), (selection.getYIndex() - i))) <= ((Ranged) selection).getRange()) {
+								if (MainValues.battleUnitArray[i][j] != null) {
+									main.Window.battleMapPanel.addTileHighlight(i, j, 2);
+								} else {
+									main.Window.battleMapPanel.addTileHighlight(i, j, 1);
+								}
+							}
+						}
+					}
+					Window.manager.setAction(2);
 				}
 			}
 		}

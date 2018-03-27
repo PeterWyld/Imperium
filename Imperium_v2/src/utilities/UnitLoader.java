@@ -38,21 +38,21 @@ public class UnitLoader {
 								unitJson.getInt("movement"), unitJson.getInt("unitIconIndex"),
 								unitJson.getString("fullname"), true);
 						unitArr[i][j] = newUnit;
-//					} else if (unitJson.getString("unitType") == "Inf") {
+//					} else if (unitJson.getString("unitType").equals("Inf")) {
 //						Melee newUnit = new Melee(j, i, unitJson.getInt("health"), unitJson.getInt("attack"), 
 //								unitJson.getInt("movement"), unitJson.getInt("unitIconIndex"),
 //								unitJson.getString("fullname"), true);
 //						unitArr[i][j] = newUnit;
-//					} else if (unitJson.getString("unitType") == "Skm") {
+//					} else if (unitJson.getString("unitType").equals("Skm")) {
 //						Skirmisher newUnit = new Skirmisher(j, i, unitJson.getInt("health"), unitJson.getInt("attack"), 
 //								unitJson.getInt("movement"), unitJson.getInt("unitIconIndex"),
 //								unitJson.getString("fullname"), true);
 //						unitArr[i][j] = newUnit;
-//					} else if (unitJson.getString("unitType") == "Rng") {
-//						Ranged newUnit = new Ranged(j, i, unitJson.getInt("health"), unitJson.getInt("attack"), 
-//								unitJson.getInt("movement"), unitJson.getInt("unitIconIndex"),
-//								unitJson.getString("fullname"), true);
-//						unitArr[i][j] = newUnit;
+					} else if (unitJson.getString("unitType").equals("Rng")) {
+						Ranged newUnit = new Ranged(j, i, unitJson.getInt("health"), unitJson.getInt("attack"), 
+								unitJson.getInt("movement"), unitJson.getInt("unitIconIndex"),
+								unitJson.getString("fullname"), true, unitJson.getInt("range"));
+						unitArr[i][j] = newUnit;
 					} else {
 						unit newUnit = new unit(j, i, unitJson.getInt("health"), unitJson.getInt("attack"), 
 								unitJson.getInt("movement"), unitJson.getInt("unitIconIndex"),

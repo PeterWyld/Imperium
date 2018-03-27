@@ -54,6 +54,7 @@ public class unit {
 	
 	public void attack(int targetY, int targetX) {
 		MainValues.battleUnitArray[targetY][targetX].takeDamage(attack);
+		movementUsed = movement;
 	}
 	
 	public void takeDamage(int damage) {
@@ -81,6 +82,10 @@ public class unit {
 	
 	public int getMovement() {
 		return movement;
+	}
+	
+	public int getHealth() {
+		return health;
 	}
 	
 	public boolean isPlayersUnit() {

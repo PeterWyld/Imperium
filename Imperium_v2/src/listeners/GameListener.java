@@ -66,6 +66,9 @@ public class GameListener extends MouseInputAdapter {
 						}
 					}
 					main.Window.manager.setAction(0);
+				} else if (main.Window.manager.getAction() == 2) {
+					((units.Ranged) main.Window.manager.getSelection()).fire(pressedX, pressedY);
+					main.Window.manager.setAction(0);
 				} else {
 					main.Window.manager.setAction(0);
 				}

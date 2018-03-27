@@ -32,6 +32,8 @@ public class BattleMap extends JPanel {
 	private Color invalidMove = new Color(1f, 0f, 0f, 0.5f);
 	private Color isFriendly = new Color(0f, 1f, 0f, 0.25f);
 	private Color[] colorArr = new Color[] {transparentBlue, transparentRed, invalidMove,isFriendly};
+	private Color health = new Color(0f, 1f, 0f);
+	private Color healthLost = new Color(1f,0f,0f);
 	
 	Image bgImage; {
 		try { 
@@ -97,6 +99,10 @@ public class BattleMap extends JPanel {
 						imageIndex = 0;//defaults to zero (Carthaginian Elephant) if outside of index
 					}
 					g2d.drawImage(unitImgArr[imageIndex], xPos, yPos, tileSize, tileSize, null);
+					g2d.setColor(healthLost);
+					g2d.fillRect(xPos, yPos+15*zoom, tileSize, zoom);
+					g2d.setColor(health);
+					g2d.fillRect(xPos, yPos + 15*zoom, (int) (tileSize * (unitArray[i][j].getHealth() / 100.0)), zoom);
 				}
 				if (highlights[i][j] != 0) { // so that no rec is drawn if there is no highlight
 					g2d.setColor(colorArr[highlights[i][j] -1]);

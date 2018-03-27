@@ -69,11 +69,29 @@ public class ImageLibrary {
 		File PerHeavCavalry = new File("res/persiaHeavCavalryUnit.png");
 		File PerLightCavalry = new File("res/persiaLiCavalryUnit.png");
 		File PerSparabara = new File("res/sparabaraUnit.png");
+		File GreCompCavalry = new File("res/companionCavalryUnit.png");
+		File GreArcher = new File("res/greekArcherUnit.png");
+		File GreLiCavalry = new File("res/greekLiCavalryUnit.png");
+		File GreHoplite = new File("res/HopliteUnit.png");
+		File GrePeltasts = new File("res/peltastsUnit.png");
+		File HunHeavCav = new File("res/hunnicHeavCavalryUnit.png");
+		File HunLiCav = new File("res/hunnicLiCavalryUnit.png");
+		File HunHorseArcher = new File("res/hunnicHorseArcher.png");
+		File HunInfantry = new File("res/hunnicInfantryUnit.png");
+		File HunArcherUnit = new File("res/hunnicArcherUnit.png");
+		File GalHeavCavalry = new File("res/gallicHeavCavalryUnit.png");
+		File GalLiCavalry = new File("res/gallicLiCavalryUnit.png");
+		File GalInfantry = new File("res/gallicInfantry.png");
+		File GalHeavInfantry = new File("res/gallicHeavyInfantry.png");
+		File GalChariot = new File("res/celticChariot.png");
 		//File  = new File("res/Unit.png");
 		
 		Image carEle, carHvCav, carLiCav, carHop, carSling,
 				romLeg, romArch, romHvCav, romLiCav, romSkrm,
-				perImor, perArch, perEle, perHvCav, perLiCav, perSpa;
+				perImor, perArch, perEle, perHvCav, perLiCav, perSpa,
+				greComCav, greArch, greLiCav, greHop, grePel,
+				hunHvCav, hunLiCav, hunHorsArch, hunInf, hunArch,
+				galHvCav, galLiCav, galInf, galHvInf, galCha;
 		
 		try {
 			carEle = ImageIO.read(CarElephant);
@@ -95,9 +113,30 @@ public class ImageLibrary {
 			perLiCav = ImageIO.read(PerLightCavalry);
 			perSpa = ImageIO.read(PerSparabara);
 			
+			greComCav = ImageIO.read(GreCompCavalry);
+			greArch = ImageIO.read(GreArcher);
+			greLiCav = ImageIO.read(GreLiCavalry);
+			greHop = ImageIO.read(GreHoplite);
+			grePel = ImageIO.read(GrePeltasts);
+			
+			hunHvCav = ImageIO.read(HunHeavCav);
+			hunLiCav = ImageIO.read(HunLiCav);
+			hunHorsArch = ImageIO.read(HunHorseArcher);
+			hunInf = ImageIO.read(HunInfantry);
+			hunArch = ImageIO.read(HunArcherUnit);
+			
+			galHvCav = ImageIO.read(GalHeavCavalry);
+			galLiCav = ImageIO.read(GalLiCavalry);
+			galInf = ImageIO.read(GalInfantry);
+			galHvInf = ImageIO.read(GalHeavInfantry);
+			galCha = ImageIO.read(GalChariot);
+			
 			unitImgArr = new Image[] {carEle, carHvCav, carLiCav, carHop, carSling,
 					romLeg, romArch, romHvCav, romLiCav, romSkrm,
-					perImor, perArch, perEle, perHvCav, perLiCav, perSpa};
+					perImor, perArch, perEle, perHvCav, perLiCav, perSpa,
+					greComCav, greArch, greLiCav, greHop, grePel,
+					hunHvCav, hunLiCav, hunHorsArch, hunInf, hunArch,
+					galHvCav, galLiCav, galInf, galHvInf, galCha};
 			
 		} catch (Exception e) {
 			JOptionPane.showMessageDialog(null, "Images failed to load", "Error", JOptionPane.INFORMATION_MESSAGE);

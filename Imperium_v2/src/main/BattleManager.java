@@ -17,6 +17,9 @@ public class BattleManager {
 	
 	public void endPlayerTurn() {
 		playerTurn = false;
+		uiSelection = null;
+		action = 0;
+		main.Window.battleMapPanel.clearHighlights();
 		for(int y = 0; y <= MainValues.battleMapArray.size() -1; y++) {
 			for(int x = 0; x <= MainValues.battleMapArray.get(0).size() -1; x++) {
 				selection = MainValues.battleUnitArray[y][x];
