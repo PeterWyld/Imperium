@@ -67,9 +67,9 @@ public class MapEditorUIListener implements MouseListener {
 					Window.frame.addMouseListener(new MenuListener());
 				
 					Window.mapEditorUI.removeMouseListener(this);
-					//Window.frame.removeMouseWheelListener(new ScrollListener());
+					Window.battleMapPanel.removeMouseListener(Window.myListener.mapListener);
+					Window.battleMapPanel.removeMouseMotionListener(Window.myListener.mapListener);
 			
-					Window.battleMapPanel.removeAll();
 					Window.Layer.remove(Window.battleMapPanel);
 					
 					//Window.mapEditorUI.removeAll();

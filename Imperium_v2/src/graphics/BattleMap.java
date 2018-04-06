@@ -15,7 +15,7 @@ import values.MainValues;
 
 public class BattleMap extends JPanel {
 	private static final long serialVersionUID = 1L;
-	private int zoom = 1;
+	private double zoom = 1;
 	private int originXPos = 0;
 	private int yPos = 0;
 	private Image[] tileImgArr = main.Window.ImageUtility.getTileImgArr();
@@ -75,7 +75,7 @@ public class BattleMap extends JPanel {
 		//	e.g. ((16/2)-(3/2))*MainValues.resolution
 		//	This will have a image with a dimension of 3*resolution and will be halfway across the screen
 		imageIndex = 0;
-		tileSize = 16*zoom;
+		tileSize = (int) Math.ceil(16*zoom);
 		
 		g2d.drawImage(bgImage, 0, 0, MainValues.resolution*16, MainValues.resolution*7, null);
 			
@@ -100,9 +100,9 @@ public class BattleMap extends JPanel {
 					}
 					g2d.drawImage(unitImgArr[imageIndex], xPos, yPos, tileSize, tileSize, null);
 					g2d.setColor(healthLost);
-					g2d.fillRect(xPos, yPos+15*zoom, tileSize, zoom);
+					g2d.fillRect(xPos, yPos+ (int) (Math.ceil(15*zoom)), tileSize, (int) Math.ceil(zoom));
 					g2d.setColor(health);
-					g2d.fillRect(xPos, yPos + 15*zoom, (int) (tileSize * (unitArray[i][j].getHealth() / 100.0)), zoom);
+					g2d.fillRect(xPos, yPos + (int) (Math.ceil(15*zoom)), (int) (tileSize * (unitArray[i][j].getHealth() / 100.0)), (int) Math.ceil(zoom));
 				}
 				if (highlights[i][j] != 0) { // so that no rec is drawn if there is no highlight
 					g2d.setColor(colorArr[highlights[i][j] -1]);

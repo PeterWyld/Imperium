@@ -20,6 +20,7 @@ public class MenuListener implements MouseListener {
 	int mX = 0;
 	int mY = 0;
 	int res = MainValues.resolution;
+	MapEditorListener mapListener = new MapEditorListener();
 	
 	@Override
 	public void mouseClicked(MouseEvent arg0) {
@@ -77,7 +78,6 @@ public class MenuListener implements MouseListener {
 						MainValues.battleUnitArray = new unit[][] {new unit[] {new unit(1, 1, 1, 1, 1, 1,"", true)}};
 					}
 					main.Window.battleMapPanel.setMap(MainValues.battleMapArray, MainValues.battleUnitArray);
-					Window.frame.addMouseWheelListener(new ScrollListener());
 					GameUIListener uiListener = new GameUIListener();
 					Window.gameUI.addMouseListener(uiListener);
 					GameListener myListener = new GameListener();
@@ -87,7 +87,6 @@ public class MenuListener implements MouseListener {
 				} else if(mY > (9.0*5.0/12-1.0/2)*res && mY < (9.0*5.0/12+1.0/2)*res){ //Map editor
 					MainValues.mainMenu = false;
 					Window.frame.removeMouseListener(this);
-					Window.frame.addMouseWheelListener(new ScrollListener());
 					
 					MainValues.battleMapArray = new LinkedList<List<String>>();
 					List<String> tempList = new LinkedList<String>();
@@ -95,9 +94,8 @@ public class MenuListener implements MouseListener {
 					MainValues.battleMapArray.add(tempList);
 			
 					Window.Layer.add(Window.battleMapPanel);					
-					MapEditorListener myListener = new MapEditorListener();
-					Window.battleMapPanel.addMouseListener(myListener);
-					Window.battleMapPanel.addMouseMotionListener(myListener);
+					Window.battleMapPanel.addMouseListener(mapListener);
+					Window.battleMapPanel.addMouseMotionListener(mapListener);
 					MainValues.battleUnitArray = new unit[][] {new unit[1]};
 					main.Window.battleMapPanel.setMap(MainValues.battleMapArray, MainValues.battleUnitArray);
 					

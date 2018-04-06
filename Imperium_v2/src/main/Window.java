@@ -11,6 +11,7 @@ import graphics.BattleMap;
 import graphics.GameUIBar;
 import graphics.MapUIBar;
 import listeners.MenuListener;
+import listeners.ScrollListener;
 import utilities.ImageLibrary;
 import utilities.JsonLibrary;
 import values.MainValues;
@@ -29,8 +30,9 @@ public class Window {
 	public static BattleMap battleMapPanel = new BattleMap();
 	public static MapUIBar mapEditorUI = new MapUIBar(); // not simply declared as a JPanel as it has its own method
 	public static GameUIBar gameUI = new GameUIBar();
+	public static MenuListener myListener = new MenuListener();
 	
-	public static void window() {
+	public static void window() {		
 		startPanel.setSize(MainValues.width + 6, MainValues.height + 25);
 		menuPanel.setSize(MainValues.width + 6, MainValues.height + 25);
 		optionsPanel.setSize(MainValues.width + 6, MainValues.height + 25);
@@ -44,10 +46,12 @@ public class Window {
 		
 		Layer.add(startPanel, JLayeredPane.DEFAULT_LAYER);
 		
-		frame.addMouseListener(new MenuListener());
+		
+		frame.addMouseListener(myListener);
 		frame.add(Layer);
 		
 		frame.setVisible(true);
+		Window.frame.addMouseWheelListener(new ScrollListener());
 
 	}
 }

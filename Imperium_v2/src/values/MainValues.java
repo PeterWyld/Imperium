@@ -17,7 +17,7 @@ public class MainValues {
 	
 	public static String title = "Imperium";
 	
-	public static int globalZoom = 1;
+	public static double globalZoom = 1;
 	public static int globalX = 0;
 	public static int globalY = 0;
 	public static List<List<String>> battleMapArray;

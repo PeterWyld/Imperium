@@ -7,6 +7,7 @@ import java.util.List;
 import javax.swing.SwingUtilities;
 import javax.swing.event.MouseInputAdapter;
 
+import main.Window;
 import units.unit;
 import values.MainValues;
 
@@ -104,9 +105,5 @@ public class MapEditorListener extends MouseInputAdapter{
 	        previousYVal = mY;
 		}
     }
-	
-	public void removeThisMouseListener() {
-		
-	}
 
 }

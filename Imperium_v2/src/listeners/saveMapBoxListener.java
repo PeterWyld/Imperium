@@ -11,14 +11,15 @@ public class saveMapBoxListener implements KeyListener{
 		int charInt = e.getKeyCode();
 		char newChar = (char) charInt;
 		if(charInt >= 32 && charInt <= 126) {
-			if(charInt >= 65 && charInt <= 90) {
-				newChar = ((char) (charInt  + capital * 32));
-				main.Window.mapEditorUI.addChar(newChar);
-			} else {
-				newChar = (char) charInt;
-				main.Window.mapEditorUI.addChar(e.getKeyChar());
+			if(!(charInt >= 37 && charInt <= 40)) {
+				if(charInt >= 65 && charInt <= 90) {
+					newChar = ((char) (charInt  + capital * 32));
+					main.Window.mapEditorUI.addChar(newChar);
+				} else {
+					newChar = (char) charInt;
+					main.Window.mapEditorUI.addChar(e.getKeyChar());
+				}
 			}
-			
 		} else if (charInt == 8) {
 			main.Window.mapEditorUI.backspaceTyped();
 		} else if (charInt == 222) {
